@@ -1,0 +1,33 @@
+/* Features overview page styles. Every selector is prefixed with `feat-`. */
+.feat-wrap { max-width:var(--page-max); margin-inline:auto; padding-inline:var(--gutter); }
+.feat-intro { padding:80px 0 64px; background:var(--nav-surface); text-align:center; }
+.feat-intro .heading { max-width:760px; margin-inline:auto; }
+.feat-lead { max-width:560px; margin:20px auto 0; color:var(--on-surface-variant); font-size:18px; line-height:1.6; }
+
+.feat-listing { padding:64px 0 96px; background:#f0f3ff; }
+.feat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
+.feat-card { display:flex; flex-direction:column; gap:16px; padding:32px; border-radius:16px; background:#fff; box-shadow:0 1px 2px rgba(0,0,0,.05); transition:box-shadow .3s,transform .3s,opacity .8s ease; }
+.feat-card.is-visible:hover { box-shadow:0 8px 24px rgba(18,29,60,.12); transform:translateY(-4px); }
+.feat-icon { display:grid; place-items:center; width:56px; height:56px; border-radius:14px; background:#dee8ff; color:var(--navy); }
+.feat-icon .material-symbols-outlined { font-size:28px; }
+.feat-card h2 { margin:0; color:var(--navy-deep); font-size:22px; font-weight:700; line-height:1.35; transition:color .2s; }
+.feat-card:hover h2 { color:#d76621; }
+.feat-card p { margin:0; color:var(--on-surface-variant); font-size:16px; line-height:1.6; }
+.feat-tags { display:flex; flex-wrap:wrap; gap:8px; margin:0; padding:0; list-style:none; }
+.feat-tags li { padding:4px 12px; border-radius:9999px; background:#f0f3ff; color:var(--navy-deep); font-size:12px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; }
+.feat-cta { display:inline-flex; align-items:center; gap:8px; margin-top:auto; padding-top:8px; color:var(--navy-deep); font-size:16px; font-weight:700; transition:color .2s; }
+.feat-cta .material-symbols-outlined { font-size:20px; transition:transform .2s; }
+.feat-card:hover .feat-cta { color:var(--brand-orange); }
+.feat-card:hover .feat-cta .material-symbols-outlined { transform:translateX(4px); }
+.feat-card:focus-visible { outline:2px solid var(--brand-orange); outline-offset:4px; }
+
+.feat-cta-band { padding:80px 0; background:var(--navy); color:#fff; text-align:center; }
+.feat-cta-band .heading { margin-bottom:32px; color:#fff; }
+
+@media (max-width:1024px) { .feat-grid { grid-template-columns:repeat(2,1fr); gap:24px; } }
+@media (max-width:640px) {
+  .feat-intro { padding:56px 0 40px; }
+  .feat-grid { grid-template-columns:1fr; }
+  .feat-card { padding:24px; }
+  .feat-cta-band .heading { font-size:32px; }
+}

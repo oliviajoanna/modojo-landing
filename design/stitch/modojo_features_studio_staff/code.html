@@ -1,0 +1,717 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MoDojo - Studio &amp; Staff Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "error": "#ba1a1a",
+                        "surface-bright": "#f9f9ff",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "primary-container": "#121d3c",
+                        "on-tertiary-container": "#d76621",
+                        "on-primary-fixed": "#0f1a39",
+                        "outline-variant": "#c6c6cf",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#a7a5ff",
+                        "on-surface-variant": "#45464e",
+                        "inverse-on-surface": "#ecf1ff",
+                        "on-secondary-fixed-variant": "#3e3c8f",
+                        "on-secondary-fixed": "#100563",
+                        "surface": "#f9f9ff",
+                        "tertiary": "#100300",
+                        "surface-tint": "#535d80",
+                        "outline": "#76767f",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#bbc5ed",
+                        "surface-container": "#e7eeff",
+                        "secondary": "#5655a8",
+                        "background": "#f9f9ff",
+                        "secondary-fixed-dim": "#c3c0ff",
+                        "on-primary": "#ffffff",
+                        "primary": "#00041a",
+                        "on-primary-fixed-variant": "#3b4667",
+                        "surface-container-low": "#f0f3ff",
+                        "tertiary-fixed": "#ffdbcb",
+                        "surface-variant": "#d8e3fb",
+                        "surface-container-highest": "#d8e3fb",
+                        "secondary-fixed": "#e2dfff",
+                        "on-secondary-container": "#393689",
+                        "on-tertiary-fixed-variant": "#793100",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-background": "#101c2d",
+                        "inverse-surface": "#263143",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#dee8ff",
+                        "primary-fixed": "#dbe1ff",
+                        "on-tertiary-fixed": "#341100",
+                        "primary-fixed-dim": "#bbc5ed",
+                        "on-surface": "#101c2d",
+                        "surface-dim": "#cfdaf3",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#391300",
+                        "on-primary-container": "#7b85aa"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "element-lg": "3rem",
+                        "content-max-width": "760px",
+                        "section-sm": "4rem",
+                        "layout-max-width": "1280px",
+                        "element-sm": "1rem",
+                        "section-xl": "10rem",
+                        "section-lg": "8rem",
+                        "element-md": "2rem",
+                        "section-md": "6rem"
+                    },
+                    fontFamily: {
+                        "label": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "heading-xl": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "heading-lg": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"]
+                    },
+                    fontSize: {
+                        "label": ["14px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "body-lg": ["19px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "heading-xl": ["44px", { "lineHeight": "1.15", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "heading-lg": ["36px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-xl": ["72px", { "lineHeight": "1.05", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "display-lg": ["56px", { "lineHeight": "1.1", "letterSpacing": "-0.035em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .hero-gradient {
+            background: linear-gradient(90deg, rgba(18,29,60,0.95) 0%, rgba(18,29,60,0.8) 40%, rgba(18,29,60,0) 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-outline-variant/20 transition-all duration-300" id="main-nav">
+  <div class="flex justify-between items-center px-section-sm py-3.5 max-w-layout-max-width mx-auto">
+    <!-- Brand -->
+    <a class="flex items-center gap-2" href="#">
+      <img alt="MoDojo Logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJCxW7fZBqzTDzgcz73oTP732SrebGGmDNvlebfLIXHD0k_ByyXPo19hvR8IwJxBAYuhZQx61H6G0UpSPxsiC6Hlq7n_dGbzA5-920rt2Mb_k3qqJ3gwQHiJzeNFgEyzrLQ__fILIi4ilrVqKWH_WDiJMzGD3FXwJ5EQhvwBnnLAT0c4OIt-5f2Q6Jyxn6TlUzg0rvmEZr9_P39doNjiK0pPNHfmewcLlF5C5AQIThbkExykKMi7S3CGNwhcA54BU5I3U">
+    </a>
+    <!-- Links (Desktop) -->
+    <div class="hidden md:flex items-center gap-element-lg">
+      <a class="text-on-surface-variant font-label text-label hover:text-on-tertiary-container transition-colors duration-200" href="#">About Us</a>
+      
+      <!-- Product Features Dropdown -->
+      <div class="relative group py-2">
+        <button class="flex items-center gap-1 text-on-tertiary-container font-label text-label font-bold border-b-2 border-on-tertiary-container pb-0.5 focus:outline-none">
+          <span class="">Product Features</span>
+          <span class="material-symbols-outlined text-[18px] transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+        </button>
+        <div class="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[520px] bg-white rounded-2xl shadow-2xl border border-outline-variant/20 p-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 grid grid-cols-2 gap-3 z-50">
+          <a href="#" class="p-3 rounded-xl hover:bg-surface-container-low transition-colors flex items-start gap-3 group/item">
+            <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center shrink-0 text-primary group-hover/item:bg-on-tertiary-container group-hover/item:text-white transition-colors">
+              <span class="material-symbols-outlined text-[20px]">groups</span>
+            </div>
+            <div>
+              <div class="font-label text-label text-primary group-hover/item:text-on-tertiary-container transition-colors">Manage Your Customers</div>
+              <div class="text-xs text-on-surface-variant mt-0.5">CRM, student profiles &amp; history</div>
+            </div>
+          </a>
+          <a href="#" class="p-3 rounded-xl hover:bg-surface-container-low transition-colors flex items-start gap-3 group/item">
+            <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center shrink-0 text-primary group-hover/item:bg-on-tertiary-container group-hover/item:text-white transition-colors">
+              <span class="material-symbols-outlined text-[20px]">calendar_month</span>
+            </div>
+            <div>
+              <div class="font-label text-label text-primary group-hover/item:text-on-tertiary-container transition-colors">Run Your Classes</div>
+              <div class="text-xs text-on-surface-variant mt-0.5">Rosters, schedules &amp; check-ins</div>
+            </div>
+          </a>
+          <a href="#" class="p-3 rounded-xl hover:bg-surface-container-low transition-colors flex items-start gap-3 group/item">
+            <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center shrink-0 text-primary group-hover/item:bg-on-tertiary-container group-hover/item:text-white transition-colors">
+              <span class="material-symbols-outlined text-[20px]">payments</span>
+            </div>
+            <div>
+              <div class="font-label text-label text-primary group-hover/item:text-on-tertiary-container transition-colors">Sales &amp; Payments</div>
+              <div class="text-xs text-on-surface-variant mt-0.5">POS, billing, auto-pay &amp; passes</div>
+            </div>
+          </a>
+          <a href="#" class="p-3 rounded-xl bg-surface-container-low border border-on-tertiary-container/30 transition-colors flex items-start gap-3 group/item">
+            <div class="w-9 h-9 rounded-lg bg-on-tertiary-container text-white flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[20px]">corporate_fare</span>
+            </div>
+            <div>
+              <div class="font-label text-label text-on-tertiary-container font-bold">Studio &amp; Staff</div>
+              <div class="text-xs text-on-surface-variant mt-0.5">Multi-location &amp; staff permissions</div>
+            </div>
+          </a>
+          <a href="#" class="p-3 rounded-xl hover:bg-surface-container-low transition-colors flex items-start gap-3 group/item">
+            <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center shrink-0 text-primary group-hover/item:bg-on-tertiary-container group-hover/item:text-white transition-colors">
+              <span class="material-symbols-outlined text-[20px]">smartphone</span>
+            </div>
+            <div>
+              <div class="font-label text-label text-primary group-hover/item:text-on-tertiary-container transition-colors">Member Experience</div>
+              <div class="text-xs text-on-surface-variant mt-0.5">Self-service booking app &amp; portal</div>
+            </div>
+          </a>
+          <a href="#" class="p-3 rounded-xl hover:bg-surface-container-low transition-colors flex items-start gap-3 group/item">
+            <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center shrink-0 text-primary group-hover/item:bg-on-tertiary-container group-hover/item:text-white transition-colors">
+              <span class="material-symbols-outlined text-[20px]">monitoring</span>
+            </div>
+            <div>
+              <div class="font-label text-label text-primary group-hover/item:text-on-tertiary-container transition-colors">Business Insights</div>
+              <div class="text-xs text-on-surface-variant mt-0.5">Real-time retention &amp; revenue metrics</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <a class="text-on-surface-variant font-label text-label hover:text-on-tertiary-container transition-colors duration-200" href="#">Pricing</a>
+      <a class="text-on-surface-variant font-label text-label hover:text-on-tertiary-container transition-colors duration-200" href="#">Contact Us</a>
+    </div>
+    <!-- Actions -->
+    <div class="hidden md:flex items-center gap-5">
+      <a class="font-label text-label text-primary hover:text-on-tertiary-container transition-colors font-semibold" href="#">Sign In</a>
+      <a class="bg-on-tertiary-container text-white px-6 py-2.5 rounded-full font-label text-label hover:bg-opacity-90 shadow-sm transition-all" href="#">Start Free Trial</a>
+    </div>
+    <!-- Mobile Toggle -->
+    <button class="md:hidden text-primary">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </div>
+</nav>
+<!-- HERO SECTION -->
+<header class="relative min-h-[90vh] flex items-center pt-24 mt-20">
+<div class="absolute inset-0 z-0 bg-primary-container overflow-hidden">
+  <img src="https://lh3.googleusercontent.com/aida/AEtjO1Xp_Y10eSScV0PqQKr5UJtI_4yuLOMG3Yd45yWZtks0HA3Vsu4eJ2vOpCnTZzOqwSZ_rowedWS2xFmFoedNfFpVRugCKMQJenRGVaQIljuAvjcDS7Ph7kCExfYqb7tVTa_t-sxBT3UTIstHeHGVmD9BXqHi2QFVF-EbbhYeydM3_nfHssr6mx18LnZGvOKo7ySiuwp1jKktDy13479dOs-GeO2ZqR2Yv6S3KaOKkEQ2dWYzLIAHInJdf4q8" alt="MoDojo Studio &amp; Staff Management" class="w-full h-full object-cover">
+  <div class="absolute inset-0 hero-gradient"></div>
+</div>
+<div class="relative z-10 w-full max-w-layout-max-width mx-auto px-section-sm flex flex-col md:flex-row items-center gap-element-lg">
+<div class="w-full md:w-1/2 text-white">
+<span class="inline-block py-1 px-3 rounded-full bg-white/10 border border-white/20 font-label text-label mb-6 text-white">Studio &amp; Staff Management</span>
+<h1 class="font-display-xl text-display-xl text-white mb-6">One platform for your entire team.</h1>
+<p class="font-body-lg text-body-lg text-surface-variant mb-10 max-w-xl">
+                    Whether you run one location or multiple studios, MoDojo helps you keep your people, locations, and day-to-day operations organized in one place.&nbsp;</p>
+<div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+<button class="bg-on-tertiary-container text-white px-8 py-4 rounded-full font-label text-label hover:bg-opacity-90 transition-all flex items-center gap-2">
+                        Start Your Free Trial
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<button class="px-8 py-4 rounded-full font-label text-label border border-white/30 text-white hover:bg-white/10 transition-all">
+                        Book a Demo
+                    </button>
+</div>
+<p class="font-label text-label text-white/60 mt-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                    30-day free trial · No credit card required
+                </p>
+</div>
+<div class="w-full md:w-1/2 relative h-[500px] hidden md:block">
+<!-- Abstract floating elements representing management -->
+<div class="absolute right-0 top-1/2 -translate-y-1/2 glass-panel p-6 rounded-2xl w-80 shadow-2xl animate-[bounce_4s_infinite]">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full bg-primary-container text-white flex items-center justify-center">
+<span class="material-symbols-outlined">storefront</span>
+</div>
+<div>
+<h4 class="font-label text-label text-primary">Downtown Studio</h4>
+<p class="text-sm text-on-surface-variant">Active · 4 Staff</p>
+</div>
+</div>
+<div class="space-y-2">
+<div class="h-2 bg-surface-container rounded-full w-full"></div>
+<div class="h-2 bg-surface-container rounded-full w-3/4"></div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- SECTION 1: BRANCHES & STUDIOS -->
+<section class="py-section-lg bg-surface">
+<div class="max-w-layout-max-width mx-auto px-section-sm">
+<div class="text-center mb-16 max-w-content-max-width mx-auto">
+<h2 class="font-heading-xl text-heading-xl text-primary mb-4">Manage your locations&nbsp;<div class="">from one place.</div></h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Organize your entire operation with a clear, hierarchical view of all your studios.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-element-lg items-center bg-white rounded-[3rem] p-8 md:p-12 shadow-sm border border-surface-container-high">
+<div class="space-y-8">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">account_tree</span>
+</div>
+<div>
+<h3 class="font-heading-lg text-heading-lg text-primary mb-2 text-2xl">Organizational Hierarchy</h3>
+<p class="text-on-surface-variant">Structure your business logically. Map out your parent organization down to individual studio locations with ease.</p>
+</div>
+</div>
+<div class="p-6 bg-surface-container-low rounded-2xl border border-surface-container">
+<ul class="space-y-3 font-label text-label text-primary">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-on-tertiary-container">business</span> Your Studio</li>
+<li class="flex items-center gap-2 ml-6"><span class="material-symbols-outlined text-on-surface-variant text-sm">subdirectory_arrow_right</span> <span class="material-symbols-outlined text-secondary">store</span>Tangerang Studio</li>
+<li class="flex items-center gap-2 ml-6"><span class="material-symbols-outlined text-on-surface-variant text-sm">subdirectory_arrow_right</span> <span class="material-symbols-outlined text-secondary">store</span>PIK Studio</li>
+<li class="flex items-center gap-2 ml-6"><span class="material-symbols-outlined text-on-surface-variant text-sm">subdirectory_arrow_right</span> <span class="material-symbols-outlined text-secondary">store</span>Bandung Studio</li>
+</ul>
+</div>
+</div>
+<div class="relative bg-surface-container-low rounded-2xl p-4 overflow-hidden border border-outline-variant/30 h-[400px]">
+<!-- Faux UI for studio management -->
+<div class="bg-white w-full h-full rounded-xl shadow-sm border border-outline-variant/20 flex flex-col">
+<div class="border-b border-outline-variant/20 p-4 flex justify-between items-center bg-surface-bright rounded-t-xl">
+<div class="font-label text-label text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">map</span> Locations
+                             </div>
+<button class="bg-primary-container text-white px-3 py-1 rounded text-xs font-label">Add Studio</button>
+</div>
+<div class="p-4 flex-1 overflow-y-auto space-y-3">
+<!-- Item 1 -->
+<div class="flex items-center justify-between p-3 border border-outline-variant/20 rounded-lg hover:border-primary-container transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded flex items-center justify-center text-white"><span class="material-symbols-outlined text-[20px]">fitness_center</span></div>
+<div>
+<div class="font-label text-label text-primary"><span style="background-color: rgb(240, 243, 255);" class="">Tangerang Studio</span></div>
+<div class="text-xs text-on-surface-variant">124 Main St. · 8 Staff</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between p-3 border border-outline-variant/20 rounded-lg hover:border-primary-container transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-secondary rounded flex items-center justify-center text-white"><span class="material-symbols-outlined text-[20px]">self_improvement</span></div>
+<div>
+<div class="font-label text-label text-primary"><span style="background-color: rgb(240, 243, 255);" class="">PIK Studio</span></div>
+<div class="text-xs text-on-surface-variant">45 Park Ave. · 5 Staff</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center justify-between p-3 border border-outline-variant/20 rounded-lg hover:border-primary-container transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-on-tertiary-container rounded flex items-center justify-center text-white"><span class="material-symbols-outlined text-[20px]">sports_martial_arts</span></div>
+<div>
+<div class="font-label text-label text-primary"><span style="background-color: rgb(240, 243, 255);" class="">Bandung Studio</span></div>
+<div class="text-xs text-on-surface-variant">99 West Blvd. · 12 Staff</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: MULTI-LOCATION MANAGEMENT -->
+<section class="py-section-lg bg-surface-container-low">
+<div class="max-w-layout-max-width mx-auto px-section-sm">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="bg-white p-8 rounded-[2rem] shadow-sm border border-surface-container-high hover:-translate-y-2 transition-transform duration-300">
+<div class="w-12 h-12 rounded-xl bg-primary-container text-white flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">dashboard</span>
+</div>
+<h3 class="font-heading-lg text-heading-lg text-primary text-2xl mb-3">Multiple Locations</h3>
+<p class="text-on-surface-variant font-body-md text-body-md">Run everything from one centralized system. Perfect for growing businesses expanding to new neighborhoods.</p>
+</div>
+<!-- Card 2 -->
+<div class="bg-white p-8 rounded-[2rem] shadow-sm border border-surface-container-high hover:-translate-y-2 transition-transform duration-300">
+<div class="w-12 h-12 rounded-xl bg-on-tertiary-container text-white flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">hub</span>
+</div>
+<h3 class="font-heading-lg text-heading-lg text-primary text-2xl mb-3">Organized Operations</h3>
+<p class="text-on-surface-variant font-body-md text-body-md">Keep schedules, staff, and reporting neatly associated with their specific physical locations.</p>
+</div>
+<!-- Card 3 -->
+<div class="bg-white p-8 rounded-[2rem] shadow-sm border border-surface-container-high hover:-translate-y-2 transition-transform duration-300">
+<div class="w-12 h-12 rounded-xl bg-secondary text-white flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">visibility</span>
+</div>
+<h3 class="font-heading-lg text-heading-lg text-primary text-2xl mb-3">Centralized Visibility</h3>
+<p class="text-on-surface-variant font-body-md text-body-md">Get a bird's-eye view of your entire business without constantly switching between different systems.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: EMPLOYEES -->
+<section class="py-section-xl bg-white relative overflow-hidden">
+<!-- Decorative bg blob -->
+<div class="absolute -right-40 top-0 w-96 h-96 bg-surface-variant rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
+<div class="max-w-layout-max-width mx-auto px-section-sm relative z-10">
+<div class="flex flex-col md:flex-row items-center gap-section-md">
+<div class="w-full md:w-5/12">
+<h2 class="font-heading-xl text-heading-xl text-primary mb-6">Give your team the access they need.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">
+                        Add unlimited staff members and organize them by studio. Ensure everyone knows their role and has the right tools to do their job effectively.
+                    </p>
+<ul class="space-y-4 font-body-md text-body-md text-primary">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-on-tertiary-container mt-1">check_circle</span>
+<span class="">Assign staff to one or multiple studio locations.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-on-tertiary-container mt-1">check_circle</span>
+<span class="">Easily deactivate accounts when staff leaves.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-on-tertiary-container mt-1">check_circle</span>
+<span class="">Clear overview of who is working where.</span>
+</li>
+</ul>
+</div>
+<div class="w-full md:w-7/12">
+<!-- Faux UI for Employee List -->
+<div class="bg-surface-bright rounded-[2rem] border border-outline-variant/30 shadow-lg overflow-hidden">
+<div class="p-6 border-b border-outline-variant/20 flex justify-between items-center bg-white">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">groups</span>
+<span class="font-label text-label text-primary">Team Members</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="bg-surface-container px-3 py-1.5 rounded-full text-xs text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">search</span> Search
+                                </div>
+<button class="bg-primary-container text-white p-1.5 rounded text-xs"><span class="material-symbols-outlined text-[18px]">add</span></button>
+</div>
+</div>
+<div class="bg-white">
+<!-- Table Header -->
+<div class="grid grid-cols-12 gap-4 p-4 border-b border-surface-container text-xs font-label text-outline uppercase tracking-wider">
+<div class="col-span-4">Name</div>
+<div class="col-span-3">Role</div>
+<div class="col-span-3">Assigned Studio</div>
+<div class="col-span-2 text-right">Status</div>
+</div>
+<!-- Rows -->
+<div class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<div class="grid grid-cols-12 gap-4 p-4 items-center hover:bg-surface-container-low transition-colors">
+<div class="col-span-4 flex items-center gap-3">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="A small, professional avatar portrait of an Asian woman named Sarah Tan, smiling warmly in a bright, modern studio setting with a clean, soft-lit background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7-nc9rafoO4PMfXDWUyEKmdiWZ78tqeEmvNpodIJSMzzSZlxSKrYxc9H8iaBnahmXNEk2f9ncvap_IX9l9LU6RYbpjHvDajuUlTs7wAZl-_Zv5KConKPtntYgmt7n-V5FyLarF6TyRQDfc6iOW125yp4xwRUd8QH1z95GkqaZwk5dmh6bSGXRMCe1s3RAzAmYTpSoX0XGaB2lWfwmcYtyLjpTu_M3WflbviElWxcOfiPY0xmJQm7nZw">
+<span class="font-label text-label text-primary">Sarah Tan</span>
+</div>
+<div class="col-span-3 text-sm text-on-surface-variant">Studio Manager</div>
+<div class="col-span-3 text-sm text-on-surface-variant">Bandung Studio</div>
+<div class="col-span-2 text-right">
+<span class="inline-block px-2 py-1 rounded bg-green-100 text-green-800 text-xs font-label">Active</span>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-12 gap-4 p-4 items-center hover:bg-surface-container-low transition-colors">
+<div class="col-span-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label">ML</div>
+<span class="font-label text-label text-primary">Michael Lee</span>
+</div>
+<div class="col-span-3 text-sm text-on-surface-variant">Front Desk</div>
+<div class="col-span-3 text-sm text-on-surface-variant">PIK Studio</div>
+<div class="col-span-2 text-right">
+<span class="inline-block px-2 py-1 rounded bg-green-100 text-green-800 text-xs font-label">Active</span>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="grid grid-cols-12 gap-4 p-4 items-center hover:bg-surface-container-low transition-colors">
+<div class="col-span-4 flex items-center gap-3">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="A small, professional avatar portrait of a Caucasian woman named Jessica Wong in fitness athletic wear, looking confident in a well-lit modern gym environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdgbkTM0YpTQLZckNWv_OZo9eb6YIO7_N5HszqpBOYmPO0lv5UFGNP5sS9rIc_Em68fqjuPfk0NjIRlBi4pz2ySXwMIapnpxV-MYPJn2Vp6INd0FwVORZyvNKdJErhgP1TNhTmB7fX6xaPWTjvww7KN8csMq6yc-aI-JfDPHpb8m6apxlqA6dKECwfdpm-ulxAnxlBfhd9wEN6RX6ofAD0ee_x76lgqL6VzMT6zW9CBfeTe9pjnBC2CQ">
+<span class="font-label text-label text-primary">Jessica Wong</span>
+</div>
+<div class="col-span-3 text-sm text-on-surface-variant">Instructor</div>
+<div class="col-span-3 text-sm text-on-surface-variant">All Locations</div>
+<div class="col-span-2 text-right">
+<span class="inline-block px-2 py-1 rounded bg-green-100 text-green-800 text-xs font-label">Active</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: ROLES & PERMISSIONS -->
+<section class="py-section-xl bg-primary-container text-white">
+<div class="max-w-layout-max-width mx-auto px-section-sm">
+<div class="text-center mb-16 max-w-content-max-width mx-auto">
+<h2 class="font-heading-xl text-heading-xl mb-4">Everyone gets the right access.</h2>
+<p class="font-body-lg text-body-lg text-inverse-primary">Granular roles and permissions ensure your sensitive data is protected while giving staff exactly what they need to work efficiently.</p>
+</div>
+<div class="flex flex-col lg:flex-row gap-element-lg">
+<!-- Permissions Matrix Faux UI -->
+<div class="w-full lg:w-2/3 bg-on-primary-fixed rounded-[2rem] border border-white/10 p-6 shadow-2xl">
+<div class="flex justify-between items-center mb-6">
+<div class="font-label text-label text-inverse-primary">Role Settings: Front Desk</div>
+<button class="text-on-tertiary-container text-sm flex items-center gap-1 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[16px]">edit</span> Edit
+                        </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-xs font-label text-inverse-primary uppercase tracking-wider border-b border-white/10">
+<th class="pb-3 pl-2">Module</th>
+<th class="pb-3 text-center">View</th>
+<th class="pb-3 text-center">Create</th>
+<th class="pb-3 text-center">Edit</th>
+<th class="pb-3 text-center">Delete</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="py-4 pl-2 font-label">Members</td>
+<td class="py-4 text-center"><span class="material-symbols-outlined text-green-400">check</span></td>
+<td class="py-4 text-center"><span class="material-symbols-outlined text-green-400">check</span></td>
+<td class="py-4 text-center"><span class="material-symbols-outlined text-green-400">check</span></td>
+<td class="py-4 text-center"><span class="material-symbols-outlined text-outline-variant">close</span></td>
+</tr>
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="py-4 pl-2 font-label">Classes</td>
+<td class="py-4 text-center"><span class="material-symbols-outlined text-green-400">check</span></td>
+<td class="py-4 text-center"><span class="material-symbols-outlined text-outline-variant">close</span></td>
+<td class="py-4 text-center"><span class="material-symbols-outlined text-outline-variant">close</span></td>
+<td class="py-4 text-center"><span class="material-symbols-outlined text-outline-variant">close</span></td>
+</tr>
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="py-4 pl-2 font-label">Bookings</td>
+<td class="py-4 text-center"><span class="material-symbols-outlined text-green-400">check</span></td>
+<td class="py-4 text-center"><span class="material-symbols-outlined text-green-400">check</span></td>
+<td class="py-4 text-center"><span class="material-symbols-outlined text-green-400">check</span></td>
+<td class="py-4 text-center"><span class="material-symbols-outlined text-green-400">check</span></td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="py-4 pl-2 font-label">Finance</td>
+<td class="py-4 text-center"><span class="material-symbols-outlined text-outline-variant">close</span></td>
+<td class="py-4 text-center"><span class="material-symbols-outlined text-outline-variant">close</span></td>
+<td class="py-4 text-center"><span class="material-symbols-outlined text-outline-variant">close</span></td>
+<td class="py-4 text-center"><span class="material-symbols-outlined text-outline-variant">close</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Role Cards -->
+<div class="w-full lg:w-1/3 flex flex-col gap-4">
+<div class="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors cursor-default">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-on-tertiary-container">sports_gymnastics</span>
+<h4 class="font-label text-label text-white text-lg">Instructor</h4>
+</div>
+<p class="text-sm text-inverse-primary">Can view schedules, manage their own class rosters, and take attendance. No access to member billing or sensitive data.</p>
+</div>
+<div class="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors cursor-default">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-secondary-container">account_balance</span>
+<h4 class="font-label text-label text-white text-lg">Finance</h4>
+</div>
+<p class="text-sm text-inverse-primary">Full access to billing, invoices, and financial reports across all locations. Limited access to class scheduling.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: HOW IT WORKS (Flow) -->
+<section class="py-section-lg bg-surface">
+<div class="max-w-layout-max-width mx-auto px-section-sm">
+<h2 class="font-heading-lg text-heading-lg text-primary text-center mb-16">Set up your team in minutes</h2>
+<div class="flex flex-col md:flex-row justify-between items-start gap-8 relative">
+<!-- Connecting Line (Desktop) -->
+<div class="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-surface-container z-0"></div>
+<!-- Step 1 -->
+<div class="relative z-10 flex flex-col items-center text-center w-full md:w-1/3">
+<div class="w-24 h-24 rounded-full bg-white border-[4px] border-surface shadow-sm flex items-center justify-center font-heading-lg text-primary text-2xl mb-6">01</div>
+<h3 class="font-label text-label text-primary text-xl mb-3">Add locations</h3>
+<p class="text-on-surface-variant">Create your HQ and map out all physical studio branches in the system.</p>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 flex flex-col items-center text-center w-full md:w-1/3">
+<div class="w-24 h-24 rounded-full bg-white border-[4px] border-surface shadow-sm flex items-center justify-center font-heading-lg text-primary text-2xl mb-6">02</div>
+<h3 class="font-label text-label text-primary text-xl mb-3">Add your team</h3>
+<p class="text-on-surface-variant">Invite staff via email and assign them to their specific home studios.</p>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 flex flex-col items-center text-center w-full md:w-1/3">
+<div class="w-24 h-24 rounded-full bg-on-tertiary-container border-[4px] border-surface shadow-sm flex items-center justify-center font-heading-lg text-white text-2xl mb-6">03</div>
+<h3 class="font-label text-label text-primary text-xl mb-3">Set permissions</h3>
+<p class="text-on-surface-variant">Assign roles to restrict access and keep your business data secure.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 6: BUSINESS OWNER VALUE (Editorial) -->
+<section class="py-section-xl bg-white border-t border-surface-container">
+<div class="max-w-layout-max-width mx-auto px-section-sm">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="border-l-2 border-primary-container pl-6">
+<h3 class="font-heading-lg text-heading-lg text-primary text-3xl mb-4">Stay Organized</h3>
+<p class="text-on-surface-variant font-body-lg text-body-lg">Stop relying on messy spreadsheets or disparate tools. Bring your entire organizational structure under one roof.</p>
+</div>
+<div class="border-l-2 border-secondary pl-6">
+<h3 class="font-heading-lg text-heading-lg text-primary text-3xl mb-4">Stay Secure</h3>
+<p class="text-on-surface-variant font-body-lg text-body-lg">Protect sensitive business metrics and client data by ensuring staff only see what they strictly need to see.</p>
+</div>
+<div class="border-l-2 border-on-tertiary-container pl-6">
+<h3 class="font-heading-lg text-heading-lg text-primary text-3xl mb-4">Stay in Control</h3>
+<p class="text-on-surface-variant font-body-lg text-body-lg">As you scale from one location to ten, maintain the same level of oversight without the administrative headache.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 7: PRODUCT SUMMARY -->
+<section class="py-section-md bg-surface-container-low">
+<div class="max-w-layout-max-width mx-auto px-section-sm text-center">
+<div class="flex flex-wrap justify-center gap-4">
+<div class="bg-white px-6 py-3 rounded-full font-label text-label text-primary shadow-sm border border-outline-variant/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-on-tertiary-container">done</span> Multiple Studios
+                </div>
+<div class="bg-white px-6 py-3 rounded-full font-label text-label text-primary shadow-sm border border-outline-variant/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-on-tertiary-container">done</span> Employee Accounts
+                </div>
+<div class="bg-white px-6 py-3 rounded-full font-label text-label text-primary shadow-sm border border-outline-variant/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-on-tertiary-container">done</span> Role Permissions
+                </div>
+<div class="bg-white px-6 py-3 rounded-full font-label text-label text-primary shadow-sm border border-outline-variant/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-on-tertiary-container">done</span> Active/Inactive Status
+                </div>
+<div class="bg-white px-6 py-3 rounded-full font-label text-label text-primary shadow-sm border border-outline-variant/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-on-tertiary-container">done</span> Location Assignment
+                </div>
+</div>
+</div>
+</section>
+<!-- FINAL CTA -->
+<section class="py-section-xl bg-primary-container text-center rounded-t-[4rem] mt-8">
+<div class="max-w-content-max-width mx-auto px-section-sm">
+<h2 class="font-heading-xl text-heading-xl text-white mb-6">Run your business with confidence.</h2>
+<p class="font-body-lg text-body-lg text-inverse-primary mb-10">
+                Join thousands of studios managing their staff and locations effortlessly with MoDojo.
+            </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+<button class="bg-on-tertiary-container text-white px-8 py-4 rounded-full font-label text-label hover:bg-opacity-90 transition-all flex items-center gap-2 scale-95 active:scale-90">
+                    Start Your 30-Day Free Trial
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<button class="px-8 py-4 rounded-full font-label text-label border border-white/30 text-white hover:bg-white/10 transition-all">
+                    Book a Demo
+                </button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full bg-[#121D3C] text-white pt-16 pb-12 border-t border-white/10">
+  <!-- Pre-footer banner -->
+  <div class="max-w-layout-max-width mx-auto px-section-sm mb-16">
+    <div class="bg-white/5 border border-white/10 rounded-[2rem] p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <h3 class="font-heading-lg text-heading-lg text-white text-2xl mb-2">Ready to simplify your studio?</h3>
+        <p class="text-surface-variant font-body-md">Start managing your studio with MoDojo today. No credit card required.</p>
+      </div>
+      <div class="flex items-center gap-4 shrink-0">
+        <a href="#" class="bg-on-tertiary-container text-white px-8 py-3.5 rounded-full font-label text-label hover:bg-opacity-90 transition-all shadow-md">
+          Start Free Trial
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 Nav Columns + Brand -->
+  <div class="max-w-layout-max-width mx-auto px-section-sm grid grid-cols-1 md:grid-cols-5 gap-element-lg mb-16">
+    <div class="md:col-span-2">
+      <a class="inline-block mb-5" href="#">
+        <img alt="MoDojo Wide Logo" class="h-9 w-auto brightness-0 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX6ReCXku3COgSC4GaegpxxZEHTXMwjqWVZjAocE6B5yWBhiuI6czHDt5re7nfGrDkrKNeSELDM7B0bTW4ka_ZUfY0Del0efuxly-lmxZIo-LJ446Ls-5UDn-63B6Ig19iN2ne_05yjNFSBvnzMlLdWTbf7H_Ul6cpjqFj5e1iDV1EfKYT-x0fYN6IYtGBLCZZPLMpAcSoah8kUjWfZ658ZUBtzZeOCD-8QC3HPhDLJ3tx4qr4vEKvNWEoRYFWTucEO8Y">
+      </a>
+      <p class="font-label text-label text-white mb-2 font-semibold">Studio management, made seamless.</p>
+      <p class="font-body-md text-body-md text-surface-variant max-w-sm mb-6">Everything you need to manage your studio, members, classes, and business — all in one place.</p>
+      <div class="flex items-center gap-4 text-surface-variant">
+        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-on-tertiary-container hover:text-white transition-colors">
+          <span class="material-symbols-outlined text-[18px]">public</span>
+        </a>
+        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-on-tertiary-container hover:text-white transition-colors">
+          <span class="material-symbols-outlined text-[18px]">share</span>
+        </a>
+        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-on-tertiary-container hover:text-white transition-colors">
+          <span class="material-symbols-outlined text-[18px]">mail</span>
+        </a>
+      </div>
+    </div>
+    <div>
+      <h4 class="font-label text-label text-white mb-4 uppercase tracking-wider text-xs font-bold">Product</h4>
+      <ul class="space-y-3 font-label text-label text-surface-variant">
+        <li class=""><a href="#" class="hover:text-white transition-colors">Manage Customers</a></li>
+        <li class=""><a href="#" class="hover:text-white transition-colors">Run Classes</a></li>
+        <li class=""><a href="#" class="hover:text-white transition-colors">Sales &amp; Payments</a></li>
+        <li class=""><a href="#" class="hover:text-white transition-colors">Studio &amp; Staff</a></li>
+        <li class=""><a href="#" class="hover:text-white transition-colors">Member Experience</a></li>
+        <li class=""><a href="#" class="hover:text-white transition-colors">Business Insights</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-label text-label text-white mb-4 uppercase tracking-wider text-xs font-bold">Company</h4>
+      <ul class="space-y-3 font-label text-label text-surface-variant">
+        <li class=""><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+        <li class=""><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+        <li class=""><a href="#" class="hover:text-white transition-colors">Press</a></li>
+        <li class=""><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-label text-label text-white mb-4 uppercase tracking-wider text-xs font-bold">Resources &amp; Support</h4>
+      <ul class="space-y-3 font-label text-label text-surface-variant">
+        <li class=""><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+        <li class=""><a href="#" class="hover:text-white transition-colors">API Documentation</a></li>
+        <li class=""><a href="#" class="hover:text-white transition-colors">System Status</a></li>
+        <li class=""><a href="#" class="hover:text-white transition-colors">Sign In</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Legal bar -->
+  <div class="max-w-layout-max-width mx-auto px-section-sm pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+    <p class="font-label text-label text-surface-variant text-sm">© 2026 MoDojo. All rights reserved.</p>
+    <div class="flex items-center gap-6 font-label text-label text-surface-variant text-sm">
+      <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+      <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+<script>
+        // Simple nav background effect on scroll
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-sm');
+                nav.classList.replace('bg-surface/90', 'bg-white/95');
+            } else {
+                nav.classList.remove('shadow-sm');
+                nav.classList.replace('bg-white/95', 'bg-surface/90');
+            }
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+</body></html>

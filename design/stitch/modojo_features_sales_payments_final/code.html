@@ -1,0 +1,379 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en" style="width: 1280px; height: 6434px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MoDojo - Sales &amp; Payments</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#d76621",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "on-surface": "#101c2d",
+                        "outline-variant": "#c6c6cf",
+                        "on-secondary-container": "#393689",
+                        "on-tertiary": "#ffffff",
+                        "background": "#f9f9ff",
+                        "on-tertiary-fixed-variant": "#793100",
+                        "inverse-on-surface": "#ecf1ff",
+                        "primary-fixed": "#dbe1ff",
+                        "on-secondary-fixed": "#100563",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#3b4667",
+                        "outline": "#76767f",
+                        "surface-dim": "#cfdaf3",
+                        "surface": "#f9f9ff",
+                        "secondary-fixed-dim": "#c3c0ff",
+                        "surface-container-low": "#f0f3ff",
+                        "on-primary-container": "#7b85aa",
+                        "secondary": "#5655a8",
+                        "on-surface-variant": "#45464e",
+                        "on-secondary-fixed-variant": "#3e3c8f",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#bbc5ed",
+                        "surface-bright": "#f9f9ff",
+                        "primary-container": "#121d3c",
+                        "tertiary": "#100300",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#0f1a39",
+                        "on-error-container": "#93000a",
+                        "primary": "#00041a",
+                        "secondary-fixed": "#e2dfff",
+                        "surface-variant": "#d8e3fb",
+                        "surface-container": "#e7eeff",
+                        "on-tertiary-fixed": "#341100",
+                        "inverse-primary": "#bbc5ed",
+                        "surface-tint": "#535d80",
+                        "secondary-container": "#a7a5ff",
+                        "surface-container-highest": "#d8e3fb",
+                        "on-primary": "#ffffff",
+                        "on-background": "#101c2d",
+                        "surface-container-high": "#dee8ff",
+                        "inverse-surface": "#263143",
+                        "tertiary-container": "#391300",
+                        "tertiary-fixed": "#ffdbcb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "content-max-width": "760px",
+                        "section-xl": "10rem",
+                        "element-sm": "1rem",
+                        "section-md": "6rem",
+                        "element-lg": "3rem",
+                        "section-sm": "4rem",
+                        "layout-max-width": "1280px",
+                        "element-md": "2rem",
+                        "section-lg": "8rem"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "heading-xl": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"],
+                        "heading-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["56px", { "lineHeight": "1.1", "letterSpacing": "-0.035em", "fontWeight": "700" }],
+                        "display-xl": ["72px", { "lineHeight": "1.05", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "heading-xl": ["44px", { "lineHeight": "1.15", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+                        "body-lg": ["19px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label": ["14px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "heading-lg": ["36px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .mega-menu-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+        .mega-menu-trigger:hover .mega-menu-content {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden selection:bg-primary-fixed selection:text-primary">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md transition-all duration-300 border-b border-transparent shadow-sm" id="main-nav">
+<div class="max-w-layout-max-width mx-auto flex justify-between items-center px-8 h-20">
+<a class="flex items-center" href="#"><img alt="MoDojo Logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOPt9iv08uP1MZi_eIZEdy5v8eekIVOIb0qqPOx9pwg9wFQ0_vAPlSE8JsNkcb4idlEbuJ2ypkKQJlPNQNEWM8oVXp6jHAyyuUIsPgXkQcyuIV95kiWsF4mfPQul13EN7WbkOpnq9QHnteR7jLiTG5mo4pR7vwTRGktdm-4MpoAwaGvWLTRQbszYt8Vxzjuc96D7kMx-vDwzU1MbqhLrFRdBz7ez-r9a0s0FUIYseVHrWde96zWv338fBx0nBIL34tgow"></a>
+<nav class="hidden md:flex items-center gap-8 relative h-full">
+<a class="font-label text-label text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">About Us</a>
+<div class="mega-menu-trigger h-full flex items-center relative cursor-pointer group">
+<span class="font-label text-label text-secondary font-bold border-b-2 border-secondary pb-1 pt-1 flex items-center gap-1">
+                        Product Features
+                        <span class="material-symbols-outlined text-[18px] group-hover:rotate-180 transition-transform duration-200">expand_more</span>
+</span>
+<!-- Mega Menu -->
+<div class="mega-menu-content absolute top-[80px] left-1/2 -translate-x-1/2 w-[800px] bg-surface rounded-xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-outline-variant/30 p-8 pt-6 z-50 overflow-hidden"><div class="mb-8"><h3 class="font-heading-lg text-primary mb-2">Product Features</h3><p class="text-on-surface-variant font-body-md">MoDojo brings your daily operations together in one seamless platform.</p></div><div class="grid grid-cols-3 gap-8 relative"><div><h4 class="font-label text-label text-primary mb-3 pb-2 border-b border-surface-container-high">Manage Your Customers</h4><ul class="space-y-2"><li class=""><a class="text-sm text-on-surface-variant hover:text-secondary block py-1 transition-colors" href="#">Members</a></li><li class=""><a class="text-sm text-on-surface-variant hover:text-secondary block py-1 transition-colors" href="#">Leads</a></li><li class=""><a class="text-sm text-on-surface-variant hover:text-secondary block py-1 transition-colors" href="#">Packages</a></li></ul></div><div><h4 class="font-label text-label text-primary mb-3 pb-2 border-b border-surface-container-high">Run Your Classes</h4><ul class="space-y-2"><li class=""><a class="text-sm text-on-surface-variant hover:text-secondary block py-1 transition-colors" href="#">Classes &amp; Scheduling</a></li><li class=""><a class="text-sm text-on-surface-variant hover:text-secondary block py-1 transition-colors" href="#">Bookings</a></li><li class=""><a class="text-sm text-on-surface-variant hover:text-secondary block py-1 transition-colors" href="#">Attendance</a></li><li class=""><a class="text-sm text-on-surface-variant hover:text-secondary block py-1 transition-colors" href="#">Instructors</a></li><li class=""><a class="text-sm text-on-surface-variant hover:text-secondary block py-1 transition-colors" href="#">Rooms</a></li></ul></div><div><h4 class="font-label text-label text-primary mb-3 pb-2 border-b border-surface-container-high">Sales &amp; Payments</h4><ul class="space-y-2"><li class=""><a class="text-sm text-secondary font-medium block py-1 transition-colors" href="#">Invoices</a></li><li class=""><a class="text-sm text-secondary font-medium block py-1 transition-colors" href="#">Payments</a></li><li class=""><a class="text-sm text-secondary font-medium block py-1 transition-colors" href="#">Sales Reports</a></li></ul></div><div><h4 class="font-label text-label text-primary mb-3 pb-2 border-b border-surface-container-high">Studio &amp; Staff</h4><ul class="space-y-2"><li class=""><a class="text-sm text-on-surface-variant hover:text-secondary block py-1 transition-colors" href="#">Branches &amp; Studios</a></li><li class=""><a class="text-sm text-on-surface-variant hover:text-secondary block py-1 transition-colors" href="#">Employees</a></li><li class=""><a class="text-sm text-on-surface-variant hover:text-secondary block py-1 transition-colors" href="#">Roles &amp; Permissions</a></li></ul></div><div><h4 class="font-label text-label text-primary mb-3 pb-2 border-b border-surface-container-high">Member Experience</h4><ul class="space-y-2"><li class=""><a class="text-sm text-on-surface-variant hover:text-secondary block py-1 transition-colors" href="#">Member Portal</a></li><li class=""><a class="text-sm text-on-surface-variant hover:text-secondary block py-1 transition-colors" href="#">Self-Service</a></li><li class=""><a class="text-sm text-on-surface-variant hover:text-secondary block py-1 transition-colors" href="#">Notifications</a></li></ul></div><div><h4 class="font-label text-label text-primary mb-3 pb-2 border-b border-surface-container-high">Business Insights</h4><ul class="space-y-2"><li class=""><a class="text-sm text-on-surface-variant hover:text-secondary block py-1 transition-colors" href="#">Dashboard</a></li><li class=""><a class="text-sm text-on-surface-variant hover:text-secondary block py-1 transition-colors" href="#">Analytics</a></li></ul></div></div><div class="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent pointer-events-none -z-10"></div></div>
+</div>
+<a class="font-label text-label text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Pricing</a>
+<a class="font-label text-label text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Contact Us</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden md:block font-label text-label text-primary hover:text-secondary transition-colors">Sign In</button>
+<button class="bg-[#F67D38] text-white px-6 py-2.5 rounded-full font-label text-label hover:opacity-90 transition-opacity">Start Free Trial</button>
+<button class="md:hidden p-2 text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center" data-alt="A bright, modern boutique fitness studio reception area with a high-end minimalist design. A staff member is interacting with a diverse customer paying for a class. Soft natural light, premium organic materials, and a sense of calm professionalism." style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCTC7DqPjJiGhJx5eDlvIhtRdK64WIVR133aLgGxE9Pksl7WNxCOpy_EkcV6KEr9vB7LlkOnSNOyH5rxJX5-xSzYy3gYmrsDKErRgSdk2b8Ra67WqN6YeCr1SkB9Q9O4Wjuh-kXxz1advTkzVfGbr9YeJ1G1N9YLn0eoUz1-AS-hy7vhifzJ7dyuh5TiGkghsyQHO65ghFM9B_wWI-Pmf_6MRROX6Dr3Ffo-8jPErTfySBtwJ_DwmAOcQ&quot;);"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-primary-container/95 via-primary-container/80 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-layout-max-width mx-auto px-8 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-section-md">
+<div class="max-w-[600px]">
+<span class="inline-block px-4 py-1.5 rounded-full bg-surface-container-lowest/10 text-inverse-on-surface border border-surface-container-lowest/20 font-label text-label mb-6 backdrop-blur-sm">Sales &amp; Payments</span>
+<h1 class="font-display-xl text-display-xl text-white mb-6 text-balance">From purchase to payment, keep your finances connected.</h1>
+<p class="font-body-lg text-body-lg text-primary-fixed-dim mb-10 text-balance">Manage invoices, payments, and sales activity without jumping between different systems.</p>
+<div class="flex flex-wrap items-center gap-4">
+<button class="bg-[#F67D38] text-white px-8 py-3.5 rounded-full font-label text-label hover:shadow-lg hover:scale-[1.02] transition-all flex items-center gap-2">
+                        Start Your Free Trial <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<button class="bg-transparent text-white border border-white/30 px-8 py-3.5 rounded-full font-label text-label hover:bg-white/10 transition-colors">
+                        Book a Demo
+                    </button>
+</div>
+</div>
+</div>
+<!-- Scroll indicator -->
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce text-white/50">
+<span class="material-symbols-outlined">arrow_downward</span>
+</div>
+</section>
+<!-- Section 1: Invoices -->
+<section class="py-section-xl bg-surface relative overflow-hidden">
+<div class="absolute top-0 right-0 w-[800px] h-[800px] bg-secondary-fixed/30 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+<div class="max-w-layout-max-width mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+<div class="max-w-[500px]">
+
+<h2 class="font-heading-xl text-heading-xl text-primary mb-6 text-balance">Create invoices in a few clicks.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8 text-balance">Generate professional invoices automatically when members purchase packages or book classes. Track status easily from draft to paid.</p>
+<ul class="space-y-4 font-body-md text-on-surface">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">check_circle</span>
+<span class="">Auto-generate upon purchase</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">check_circle</span>
+<span class="">Customizable branding</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">check_circle</span>
+<span class="">Direct email delivery to members</span>
+</li>
+</ul>
+</div>
+<div class="relative">
+<div class="absolute inset-0 bg-gradient-to-br from-surface-container-high to-surface-variant rounded-[2.5rem] transform rotate-3 scale-[1.02] shadow-sm -z-10"></div>
+<!-- MoDojo Invoice UI Mockup -->
+<div class="bg-surface-container-lowest rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#D7DCEE] p-8 relative overflow-hidden group">
+<!-- UI Header -->
+<div class="flex justify-between items-center mb-10 pb-6 border-b border-surface-container-high">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-display-lg text-[18px]">M</div>
+<div>
+<h3 class="font-label text-label text-primary">MoDojo Studio</h3>
+<p class="text-[12px] text-on-surface-variant">Invoice #INV-00241</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-green-50 text-green-700 border border-green-200 rounded-full text-[12px] font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                            Paid
+                        </span>
+</div>
+<!-- Customer Details -->
+<div class="mb-8">
+<p class="text-[12px] text-on-surface-variant uppercase tracking-wider font-semibold mb-2">Billed To</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-secondary font-bold">ST</div>
+<div>
+<p class="font-label text-label text-primary">Sarah Tan</p>
+<p class="text-[13px] text-on-surface-variant">sarah.tan@example.com</p>
+</div>
+</div>
+</div>
+<!-- Line Items -->
+<div class="bg-surface-container-low rounded-xl p-4 mb-6">
+<div class="flex justify-between items-center border-b border-surface-container-high pb-3 mb-3">
+<p class="text-[12px] text-on-surface-variant font-semibold">Description</p>
+<p class="text-[12px] text-on-surface-variant font-semibold">Amount</p>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<p class="font-label text-label text-primary">Pilates 10-Class Package</p>
+<p class="text-[13px] text-on-surface-variant">Valid for 3 months</p>
+</div>
+<p class="font-label text-label text-primary">Rp 750,000</p>
+</div>
+</div>
+<!-- Total -->
+<div class="flex justify-end pt-4 border-t border-surface-container-high">
+<div class="text-right">
+<p class="text-[13px] text-on-surface-variant mb-1">Total Amount</p>
+<p class="font-heading-lg text-[28px] font-bold text-primary tracking-tight">Rp 750,000</p>
+</div>
+</div>
+<!-- Interactive Hover effect -->
+<div class="absolute inset-0 bg-gradient-to-t from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3 & 4: Payments and Less Manual Tracking -->
+<section class="py-section-xl relative overflow-hidden bg-primary">
+<div class="max-w-layout-max-width mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div>
+<span class="inline-block px-4 py-1.5 rounded-full bg-white/10 text-primary-fixed border border-white/20 font-label text-label mb-6 backdrop-blur-sm tracking-wider uppercase">Payments</span>
+<h2 class="font-heading-xl text-heading-xl text-white mb-6 text-balance">Make payments easier for your members.</h2>
+<p class="font-body-lg text-body-lg text-primary-fixed-dim mb-8 text-balance">MoDojo integrates payment functionality through DOKU, allowing members to complete payments through their member experience.</p>
+<div class="mt-16 border-t border-white/10 pt-10">
+<h3 class="font-heading-lg text-[32px] mb-4 text-white">Less manual payment tracking.</h3>
+<p class="font-body-md text-body-md text-primary-fixed-dim mb-8">When payments are connected to invoices, your team can easily understand the entire transaction without checking multiple systems.</p>
+<div class="space-y-4">
+
+<div class="flex justify-center -my-2 text-white/30 z-10 relative mb-16"></div>
+
+<div class="flex justify-center -my-2 text-white/30 z-10 relative mb-16"></div>
+
+</div>
+<p class="font-body-md text-primary-fixed-dim italic mt-6 border-l-2 border-secondary-fixed pl-4">One connected payment journey. Less administrative work.</p>
+</div>
+</div>
+<div class="relative flex justify-center mb-16">
+<!-- Mobile Mockup -->
+<div class="w-[320px] bg-white rounded-[40px] shadow-2xl p-2 border-[6px] border-surface-container-high relative overflow-hidden">
+<div class="bg-surface w-full h-full rounded-[32px] flex flex-col relative overflow-hidden">
+<!-- Status bar fake -->
+<div class="h-8 w-full bg-white flex justify-between items-center px-4">
+<span class="text-[10px] font-bold text-on-surface">9:41</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-[14px] text-on-surface">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined text-[14px] text-on-surface">wifi</span>
+<span class="material-symbols-outlined text-[14px] text-on-surface">battery_full</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto pb-6">
+<div class="p-5 bg-white border-b border-surface-container">
+<h4 class="font-heading-lg text-[22px] text-primary mb-1">Complete Payment</h4>
+<p class="text-sm text-on-surface-variant">Invoice #INV-00241</p>
+</div>
+<div class="p-5">
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-outline-variant/20 mb-6">
+<p class="text-sm text-on-surface-variant mb-2">Item</p>
+<p class="font-label text-primary mb-4 pb-4 border-b border-surface-container">Pilates 10-Class Package</p>
+<div class="flex justify-between items-end">
+<p class="text-sm text-on-surface-variant">Amount Due</p>
+<p class="font-heading-lg text-[24px] text-primary">Rp 750,000</p>
+</div>
+</div>
+
+
+<button class="w-full bg-secondary text-white py-3.5 rounded-full font-label mb-4 hover:bg-secondary/90 transition-colors">Continue to Payment</button>
+<!-- Success overlay simulation -->
+<div class="mt-8 bg-green-50 border border-green-200 rounded-xl p-4 text-center">
+<div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 text-green-600">
+<span class="material-symbols-outlined text-[28px]">check</span>
+</div>
+<p class="font-label text-green-800 mb-1">Payment Successful</p>
+<p class="text-[12px] text-green-600">Your payment has been received.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative elements -->
+<div class="absolute -right-12 top-1/4 w-32 h-32 bg-secondary/20 rounded-full blur-2xl"></div>
+<div class="absolute -left-12 bottom-1/4 w-40 h-40 bg-[#F67D38]/20 rounded-full blur-3xl"></div>
+</div>
+</div><section class="py-16 bg-surface relative overflow-hidden border-t border-surface-container-high"><div class="max-w-layout-max-width mx-auto px-8 text-center"><div class="mb-12"><h3 class="font-heading-lg text-[24px] md:text-[28px] tracking-tight mb-4 text-primary">Our Payment Partner</h3><div class="inline-flex items-center justify-center p-3"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBif34FV6F2dLiL3oO43FW5YnWiT--29TIG5o8e8aaRDfUmBi_upiVMvRVtvJ6S8VXddhKJy-kXokJVQ7J3aawuVzAJqpmbcChmI1vlEQqh1NA4VlI-CXZjSnnGZaIkGN3n5KRbJSn43YOPhL3a01pYFxXjKyiMPFBC8sKxNA0sTVGvXP6Nppa5fHHy14UIGi57BJqfep4NSOQmsReIEKbRbUpSGIK0Mi0ghiUHyLRw_HsZrz2Dz9DkX05YDXxwfHqsdsQ" alt="DOKU" class="h-12 w-auto object-contain rounded-lg"></div></div><div><h4 class="font-heading-lg text-[20px] md:text-[22px] tracking-tight mb-8 text-primary">Various Payment Method</h4><div class="flex flex-col gap-4 max-w-4xl mx-auto"><div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"><div class="bg-white rounded-full px-6 py-2 h-14 flex items-center justify-center border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVylMgCUUoqwBYMu4nY5aoSE611-mmlhy9kxruNWrJgbSB1DqkMRsDCJuIuhYWki2Ldtg7JDtY_FuADW454JHwV5c0abHt2MDs9-tmJ0GQHCSHSRxnZ2o2bow-LoAhe3HORJVYKGwfehVKa7ND55AXGk7Xxcocc2UQ5Vpi4HgGCqt5KCbWi6G2YjL2HrX6Yfk3NfkxYDzL42jCFtU4An53t6o-KrlbviSA2rfKMTZbn4hgIWjaLTmR21HsAooU_57Tm1k" alt="BCA" class="max-h-7 max-w-[100px] object-contain"></div><div class="bg-white rounded-full px-6 py-2 h-14 flex items-center justify-center border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuALj_X4oSsfgnufisTmVz8fpAYaDnjzVtd07s8xl8XyY3Eq0I1T2i11kyHsRSLD4bBfl4f3M_-8KtDDY3GiGE1KILjBfKPwLXRAVt3nQa2vzMY8OmkmOn5kQa1nfhGOPqHoC7suBk5GE991INgnq3qC190JeBXtUazVQp2ulSR8zVQXnBym1RGfYQLExADg9o8ReAfsrKBmx7WaMqN_8N5wh-HM4Hbct2W6-x5WeY7jyjitjzMlgdv4yeN9mTP03Wcbln4" alt="Bank BRI" class="max-h-7 max-w-[100px] object-contain"></div><div class="bg-white rounded-full px-6 py-2 h-14 flex items-center justify-center border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-O49v2RBtnvFGPPSDhOve-pIg1uu395Z_NyNvjdKXtQVM6wwOc-AvHda__EyUCoPYwHantXWUuNqic8VBXID-P_u3QCSqyKi6hORbEzJkQqweF_L6JBceMSHpHptUhmt7vn5rlYv6Z2uoUU8fRz-ouHoFxPTzmGxw20D8PFSmEz-Te9hI4fUXaDauyGtS2wNSyvYO2lshoaGHEoe0OvuM0WB8lCNZs5wFOzIOkYKkStNxM9OYdIU1nOuxl0p44cDhMJc" alt="Mandiri" class="max-h-7 max-w-[100px] object-contain"></div><div class="bg-white rounded-full px-6 py-2 h-14 flex items-center justify-center border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQNB8HAqQ5MZJ1SvWQzQWYCxGeN_wZg_tIahrnw9eSJ85nTU1DXM4EcBDpvAOdI_QGWR7D5G_T-5XoguOggWMHyDN-NhRddl7HsVzzayAZFzH6PzY5CLIUTclVa1VooiM8Tfql_WziqgOQCx8pPwfwsuTntjPrEYvZOWfpBz6PGT8TMLrVpwQfdLOdFtzCeeofyeqjx1Upjv2P6SkPad8GHOW81QdElRI5DVaxU30TvTYKYuaVutmCClf4SSRH-qSTpcw" alt="BSI" class="max-h-7 max-w-[100px] object-contain"></div><div class="bg-white rounded-full px-6 py-2 h-14 flex items-center justify-center border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrvsYMY854FjRl9A0JzVEFROOGiE4zynCuMNEwmArluEwd8THJoTs_H2WB9BGNb6BS8zaGTSYYHDvi0wqkJjVjwDbwWEZKySYk_mp9maxrJRvpdUP0Xe10Wkqdq-hFPTgOBeb2d-_JU6SbIXX176MSZ-YmkSzFQJAVBajNgblMuwvEUji6pJpFlc-FhGZGaC04QeVjaQU0-uQBqen3EWs9lIkStuVfNOaxNignw7-1dS05CiIOuPQq94XExNoS3pSCf_E" alt="Permata Bank" class="max-h-7 max-w-[110px] object-contain"></div></div><div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"><div class="bg-white rounded-full px-6 py-2 h-14 flex items-center justify-center border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrVR88az_c6uWI8CWCXUF6VgJCuTr9hq8EumGrdVPVDzqSA9Xm6x3JPkm4YFJ3Cu889DXllVJhSiubUmLIm_SA_cbSAm_AIRGpD8b075vG3NaWY7Ne6TWQTu8NHuYxWvhePUNII3LMdvSd7S0pYK8nNMTZGaGr_Cu4Mla8THeX-xzmCANMxKDu8GGfg_OjZhf5yUOBloi_m537aDsdLyeP_wTz49IAUXn4SjZVV5XyRkqQBeQqQJAE59N3hko0LXbXSIw" alt="BCA KlikPay" class="max-h-7 max-w-[100px] object-contain"></div><div class="bg-white rounded-full px-6 py-2 h-14 flex items-center justify-center border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsfFoG5K4GjfxRv-ILFkJ-G0bwrrJbL3HiQQuAbuBW6i2gQu4zww0UfjW-_doc6qy7GSbQd-x_J4fk-j9oJfZ5i8iTWJhfCdvbEyMNFbK5JRh0cYERXsmSsTvlPltMqWFivSjIQ43QlqnM7YKFifKXtMjUY9-cNKnExJvgqe-80io1jGudQhWSEhmAmz4pBbk-mVzYJCb7Lu4290DMq1OKT5Oy9loU1i4dprdoTZN2j9kx-v2oo5gTaW01vimNXt9HXzQ" alt="Credit and Debit Cards" class="max-h-8 max-w-[110px] object-contain"></div><div class="bg-white rounded-full px-6 py-2 h-14 flex items-center justify-center border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBE0y9_ihZbccZfKIJQs3g5fFwJk0P9BKBC0p0-deek2WbZ6Ce0IYPUgL6sVkHx-tqcuW7E7aqKQ4ENqeGv74tWf20PHdTi2fhTZ5v-AmdfUf9hZtl68waOvbC-83e1o3QhK6rSfUxB1KvEEydsuMicS9xBrOTBkvhb61K7yBJKvQleqQBcozCWZfQ2YqDBAmpWcHnhrVjdc9690gnQGoLWivrF_HkfZJaUOLHDroKVmWhN6PAomxUHs0Zqc-EkXv28Iis" alt="Indodana" class="max-h-7 max-w-[110px] object-contain"></div><div class="bg-white rounded-full px-6 py-2 h-14 flex items-center justify-center border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxkA2y-JawFMdPBPcUbZbKRsHoGu7PNQ2QtPqt9rGRiy5vITq9e4UU3iWwjrR2AGZK47Q9vJ9tQZorKCSXAfTbPwc9acADq99ZF5E2QoPsAg4sJ4obtAj1ONdUIPzqcJG3HX4oSzRrbDONDAWPRdVP_JCyNvqmcUFt-IOcT8zPgv8_bW3k-gXQ0nY5R9BrVu_fAKiZgbLa2mavxuSrtFL64TL66sXOuvC4cW_3I73398_sq3gItURKinZaQtfa-f5lzko" alt="Indomaret" class="max-h-7 max-w-[100px] object-contain"></div><div class="bg-white rounded-full px-6 py-2 h-14 flex items-center justify-center border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnQ4-SH2vyJh3ZQ6G7Ig9Vf_8tSoZD2HGIZ0k_xy4E-puCHhYZavzr4paIXqnqMRVtGVJB-_27Ln4mO-k2B6W23KvxFOb-ovCeuWOwinXRX9fUr9aEB13NmCPP8eXmsH7QBapHrb_2E_7VdgiTGyhb9nF1e7KZvINA09qnDZebhWV-_Sy3jW8gKgLZIifaGJI3Xjpr-B-gJZ5OBAWszltbiLZo6sdljM6QyGSu76y-eShDgiTelziginPBKruNgG2R_pA" alt="Alfamart" class="max-h-7 max-w-[110px] object-contain"></div></div><div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"><div class="bg-white rounded-full px-6 py-2 h-14 flex items-center justify-center border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0P9dEAYd542U5Esi3g5XvyzwuE1G43N7qauCs1SND0hOIxpUCGcy7Ay4-t7145Eb0zizsFh7ir8XZD09zu1s_wjsNU-1Nd5fwk1bialAiHco3I3dn8oxbqgNNbiM39bTqWL2CzXbWg6w95X4rfca46JAuIJ3W_IPOrP8gJlbT-Kb94MfC62i5T9ZtGN4X0RlSwY5F9HEaDYIRBbnvJjnv4bDWWkaz8RQArk2zcqsDqkBzIys5zwuATRNHQa7GpT9NDR4" alt="Akulaku" class="max-h-7 max-w-[100px] object-contain"></div><div class="bg-white rounded-full px-6 py-2 h-14 flex items-center justify-center border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuArTCIQzkZnLnXQAuMloMLO4DcYrXnF2_7_gdsWaVrXYeJqQ9YMpwatZUScUZM6H969-Mtj8-La6u8ORda0UOszYncyH3hSAa1NatxGrjVWRxc2astJwXJMnWCPxH7UhlIrdavefF5RbCsX2EJBUQ614w3F-KELlscNuOluzgfcYoulbT5sQE1M6oD0MxkIBAlAGQlTN9T2VX2LXZOgjDYVUQj0TI-3_0KSr1avdvM9hdNyrOsloxXyncMJHpQI8UlvM6k" alt="OVO" class="max-h-7 max-w-[80px] object-contain"></div><div class="bg-white rounded-full px-6 py-2 h-14 flex items-center justify-center border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqQYQRy_L354IfX29AMAEK4vJ8XoiTi_PyjiVrK1DP6yc73eJKqLc4X-L1hCVhj4W4XUgRgEotePonqOqDd0DeWYeXrbX09SR_r_rA2KZ_AqTMPWrSeAvvTx_JomDC8tiu6SQHrnqq6IiSfZbF02zSYgZd1zQ-CMlUf5CW298X9zwCELW7MrGYO4jlwR_qQhYu_5m_KdneOfTjfEBYZq9V1tTegeAdTwYVTjfPgrZh-jXvx7U-MTltsduvWdoHIRnPV8Q" alt="ShopeePay" class="max-h-7 max-w-[100px] object-contain"></div><div class="bg-white rounded-full px-6 py-2 h-14 flex items-center justify-center border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOV3aOXGNN5CnI9UGwbjceN2BW-4i8n5mGCSe8DobBIZ877-ZqvD9dZyr359qZPHC_sRCYfnIFBrMi9FUmxDfbekclcKxRlD8qKVglcwIkkAHB_2U90kYOlIirp6Oho5kgP5wbWbjbyJUpVdfUCQYf9GC0iwh9xqAnoUggVJLAUcTHp_1dno-Y8efD_PNjzwTjUR8zsO0jLjkVAweV81GMyNwGhSOGiIFNcojPDXffvsfEUeX4MDcTG_GlFErhda2PFnI" alt="LinkAja" class="max-h-7 max-w-[90px] object-contain"></div><div class="bg-white rounded-full px-6 py-2 h-14 flex items-center justify-center border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBh-y5ES3HiiyMeeUOq5hmd-aH8RCAfgEZHRT7qeVJ_D1DBvxUwjuUxrzrUrLUJQl5M62dvC_lCs4eKoiOkERBkSpx0Oa_RSX89vNu6fV5CrDX2qhp_z5KiA3J68623hp774kwsJ6HkUMoA0MzBuex0trmrqKxznG0jMNnf4AJz0_uIvGy4gxHMRTVipMlwnvarKe7LkOs6uio0GxXS2GbYyqpmkrLebXYtRiYoNkBjnWp2l6eq7k4yrBo-S1mvUjV7IGc" alt="Kredivo" class="max-h-7 max-w-[100px] object-contain"></div></div></div><p class="text-sm font-medium mt-6 tracking-wide text-on-surface-variant">and more</p></div></div></section>
+</section>
+<!-- Section 5: Sales Reports -->
+<section class="py-16 bg-surface relative overflow-hidden"><div class="max-w-layout-max-width mx-auto px-8"><div class="text-center max-w-3xl mx-auto mb-12"><span class="inline-block px-4 py-1.5 rounded-full bg-surface-container border border-outline-variant/20 font-label text-label text-secondary mb-4 uppercase tracking-wider">Sales Reports</span><h2 class="font-heading-xl text-heading-xl text-primary mb-4">Know where your revenue comes from.</h2><p class="font-body-lg text-body-lg text-on-surface-variant">Turn your sales activity into useful business information. Understand what you're selling, how much you're earning, and what's happening across your business.</p></div><div class="relative rounded-[2rem] overflow-hidden shadow-2xl border border-outline-variant/10 group"><div class="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent pointer-events-none"></div></div></div></section>
+<!-- Section 6: Understand Your Sales -->
+<section class="py-16 bg-surface-container-low border-t border-surface-container-high"><div class="max-w-layout-max-width mx-auto px-8"><div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10"><div class="bg-surface rounded-2xl p-6 border border-outline-variant/10 shadow-sm hover:shadow-md transition-shadow"><div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary mb-5"><span class="material-symbols-outlined">monitoring</span></div><h3 class="font-heading-lg text-[22px] text-primary mb-2">Revenue</h3><p class="font-body-md text-on-surface-variant">See how much your business is earning. Track sales activity and revenue over time.</p></div><div class="bg-surface rounded-2xl p-6 border border-outline-variant/10 shadow-sm hover:shadow-md transition-shadow"><div class="w-12 h-12 bg-[#F67D38]/10 rounded-xl flex items-center justify-center text-[#F67D38] mb-5"><span class="material-symbols-outlined">inventory_2</span></div><h3 class="font-heading-lg text-[22px] text-primary mb-2">Package Purchases</h3><p class="font-body-md text-on-surface-variant">Know what your members are buying. Understand which packages are driving sales.</p></div><div class="bg-surface rounded-2xl p-6 border border-outline-variant/10 shadow-sm hover:shadow-md transition-shadow"><div class="w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center text-green-600 mb-5"><span class="material-symbols-outlined">price_check</span></div><h3 class="font-heading-lg text-[22px] text-primary mb-2">Payment Status</h3><p class="font-body-md text-on-surface-variant">Know what has been paid. Quickly identify paid and outstanding invoices.</p></div></div><div class="text-center max-w-2xl mx-auto"><p class="font-body-lg text-primary font-medium">Stop guessing. Start understanding your business. MoDojo turns everyday sales and payment activity into information you can use to make better decisions.</p></div></div></section>
+<!-- Section 7: Connected Financial Journey -->
+<section class="py-section-xl overflow-hidden relative bg-primary">
+<div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-secondary via-primary-container to-primary-container pointer-events-none"></div>
+<div class="max-w-layout-max-width mx-auto px-8 relative z-10">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<h2 class="font-heading-xl text-heading-xl text-white mb-6">One sale. One connected journey.</h2>
+<p class="font-body-lg text-primary-fixed-dim">From the moment a member purchases a package to the moment the payment reaches your business, MoDojo keeps the information connected.</p>
+</div>
+<div class="relative">
+<!-- Connecting Line for desktop -->
+<div class="hidden lg:block absolute top-1/2 left-10 right-10 h-0.5 bg-gradient-to-r from-secondary-fixed/10 via-secondary-fixed/50 to-secondary-fixed/10 -translate-y-1/2 z-0"></div>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-4 relative z-10"><div class="flex flex-col items-center text-center"><div class="w-16 h-16 bg-surface-tint rounded-full flex items-center justify-center text-white mb-4 shadow-lg border-2 border-primary-container relative"><span class="material-symbols-outlined">person</span></div><h4 class="font-label text-[16px] text-white mb-2">Member</h4><p class="text-sm text-primary-fixed-dim">Purchases package</p><div class="lg:hidden mt-4 text-white/30"><span class="material-symbols-outlined">arrow_downward</span></div></div><div class="flex flex-col items-center text-center"><div class="w-16 h-16 bg-surface-tint rounded-full flex items-center justify-center text-white mb-4 shadow-lg border-2 border-primary-container relative"><span class="material-symbols-outlined">receipt_long</span></div><h4 class="font-label text-[16px] text-white mb-2">Invoice</h4><p class="text-sm text-primary-fixed-dim">Invoice created</p><div class="lg:hidden mt-4 text-white/30"><span class="material-symbols-outlined">arrow_downward</span></div></div><div class="flex flex-col items-center text-center"><div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center text-white mb-4 shadow-lg shadow-secondary/30 border-2 border-primary-container relative transform lg:-translate-y-2"><span class="material-symbols-outlined">account_balance_wallet</span></div><h4 class="font-label text-[16px] text-white mb-2">Payment</h4><p class="text-sm text-primary-fixed-dim">Completed through DOKU</p><div class="lg:hidden mt-4 text-white/30"><span class="material-symbols-outlined">arrow_downward</span></div></div><div class="flex flex-col items-center text-center"><div class="w-16 h-16 bg-surface-tint rounded-full flex items-center justify-center text-white mb-4 shadow-lg border-2 border-primary-container relative"><span class="material-symbols-outlined">bar_chart</span></div><h4 class="font-label text-[16px] text-white mb-2">Sales Report</h4><p class="text-sm text-primary-fixed-dim">Sale recorded</p><div class="lg:hidden mt-4 text-white/30"><span class="material-symbols-outlined">arrow_downward</span></div></div><div class="flex flex-col items-center text-center"><div class="w-16 h-16 bg-[#F67D38] rounded-full flex items-center justify-center text-white mb-4 shadow-lg shadow-[#F67D38]/30 border-2 border-primary-container relative transform lg:-translate-y-2"><span class="material-symbols-outlined">lightbulb</span></div><h4 class="font-label text-[16px] text-white mb-2">Business Insight</h4><p class="text-sm text-primary-fixed-dim">Understand performance</p></div></div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<!-- Section 8: Final Value Statement -->
+<section class="py-20 bg-surface relative overflow-hidden"><div class="max-w-layout-max-width mx-auto px-8 text-center"><div class="max-w-3xl mx-auto"><h2 class="font-heading-xl text-heading-xl text-primary mb-6">Less time tracking payments. More time running your business.</h2><p class="font-body-lg text-body-lg text-on-surface-variant mb-10">MoDojo brings invoices, payments, and sales activity together so your team can spend less time on financial administration and more time focusing on your members.</p><div class="flex flex-wrap justify-center items-center gap-4 mb-6"><button class="bg-[#F67D38] text-white px-8 py-3.5 rounded-full font-label text-label hover:shadow-lg hover:scale-[1.02] transition-all flex items-center gap-2">Start Your Free Trial <span class="material-symbols-outlined text-[18px]">arrow_forward</span></button><button class="bg-transparent text-primary border border-outline px-8 py-3.5 rounded-full font-label text-label hover:bg-surface-container-low transition-colors">Book a Demo</button></div><p class="text-sm text-on-surface-variant opacity-80">30-day free trial · No credit card required</p></div></div></section>
+<!-- Final CTA Section -->
+<footer class="bg-primary text-white pt-16 pb-12 mt-auto border-t border-white/10"><div class="max-w-layout-max-width mx-auto px-8"><div class="bg-gradient-to-r from-primary-container to-secondary/30 rounded-3xl p-8 md:p-12 mb-16 flex flex-col md:flex-row justify-between items-center gap-6 border border-white/10 shadow-2xl"><div class="max-w-xl text-center md:text-left"><h3 class="font-heading-lg text-[28px] md:text-[32px] text-white font-bold mb-2">Ready to simplify your studio?</h3><p class="font-body-md text-primary-fixed-dim">Start managing your studio with MoDojo today.</p></div><div class="flex flex-wrap items-center gap-4"><button class="bg-[#F67D38] text-white px-8 py-3.5 rounded-full font-label text-label hover:opacity-90 hover:scale-[1.02] transition-all shadow-lg flex items-center gap-2">Start Free Trial <span class="material-symbols-outlined text-[18px]">arrow_forward</span></button><button class="bg-transparent text-white border border-white/30 px-8 py-3.5 rounded-full font-label text-label hover:bg-white/10 transition-colors">Book a Demo</button></div></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 pb-16 border-b border-white/10"><div class="lg:col-span-2"><a href="#" class="inline-block mb-6 bg-white/95 px-3 py-1.5 rounded-xl"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCVy7axJIHwwZgcrkgPyUvF6-vTXx-KHdr4MOgL_KPLGRoop8WKeiD1NSrZegJNRl6TeQyWZlkOw33wZGiMNoQZQjt9kUWiCkSSdnga3wN2ErFAZIC1qKLr9KUJdtVKsq_Jrr8thltJRRPEWI6aSag9hXrKqr9rm4Ku7_GBJ8YPFIB8vcT9HsKqQ7owtKu2GxFP2ZYXF5bW3L1Iv6QefRh5TZ-CHKnAAL9lCFIlA_j8p8mZgwVli6Twksj365NNHWV2Vg" alt="MoDojo Logo" class="h-7 w-auto object-contain"></a><h4 class="font-heading-lg text-[22px] font-bold text-white mb-3">Studio management, <span class="text-[#F67D38]">made seamless.</span></h4><p class="font-body-md text-primary-fixed-dim max-w-sm mb-6">MoDojo provides an all-in-one studio management platform designed to help fitness, yoga, and wellness studios streamline everyday operations.</p><div class="flex items-center gap-3"><a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"><span class="material-symbols-outlined text-[20px]">share</span></a><a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"><span class="material-symbols-outlined text-[20px]">mail</span></a></div></div><div><h5 class="font-label text-label uppercase tracking-wider text-white font-bold mb-4">Product</h5><ul class="space-y-3 font-body-md text-primary-fixed-dim"><li class=""><a href="#" class="hover:text-white transition-colors">Features</a></li><li class=""><a href="#" class="hover:text-white transition-colors">Pricing</a></li><li class=""><a href="#" class="hover:text-white transition-colors">Member Portal</a></li><li class=""><a href="#" class="hover:text-white transition-colors">Business Insights</a></li></ul></div><div><h5 class="font-label text-label uppercase tracking-wider text-white font-bold mb-4">Company</h5><ul class="space-y-3 font-body-md text-primary-fixed-dim"><li class=""><a href="#" class="hover:text-white transition-colors">About Us</a></li><li class=""><a href="#" class="hover:text-white transition-colors">Contact Us</a></li></ul></div><div><h5 class="font-label text-label uppercase tracking-wider text-white font-bold mb-4">Resources</h5><ul class="space-y-3 font-body-md text-primary-fixed-dim"><li class=""><a href="#" class="hover:text-white transition-colors">Help Center</a></li><li class=""><a href="#" class="hover:text-white transition-colors">Documentation</a></li><li class=""><a href="#" class="hover:text-white transition-colors">FAQs</a></li></ul></div><div><h5 class="font-label text-label uppercase tracking-wider text-white font-bold mb-4">Account</h5><ul class="space-y-3 font-body-md text-primary-fixed-dim"><li class=""><a href="#" class="hover:text-white transition-colors">Sign In</a></li><li class=""><a href="#" class="hover:text-white transition-colors">Start Free Trial</a></li></ul></div></div><div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-primary-fixed-dim"><p class="">© 2024 MoDojo. All rights reserved.</p><div class="flex items-center gap-6"><a href="#" class="hover:text-white transition-colors">Privacy Policy</a><a href="#" class="hover:text-white transition-colors">Terms of Service</a></div></div></div></footer>
+<script>
+        // Simple scroll observer for nav background
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-sm');
+                nav.classList.replace('bg-surface/80', 'bg-surface/95');
+            } else {
+                nav.classList.remove('shadow-sm');
+                nav.classList.replace('bg-surface/95', 'bg-surface/80');
+            }
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

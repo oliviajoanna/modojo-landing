@@ -1,0 +1,870 @@
+<!DOCTYPE html><html lang="en" style="width: 1280px; height: 7622px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MoDojo - Run Your Classes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#cfdaf3",
+                        "inverse-on-surface": "#ecf1ff",
+                        "secondary-fixed-dim": "#c3c0ff",
+                        "tertiary": "#100300",
+                        "primary-fixed": "#dbe1ff",
+                        "inverse-surface": "#263143",
+                        "on-primary-container": "#7b85aa",
+                        "on-secondary-container": "#393689",
+                        "primary-fixed-dim": "#bbc5ed",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#a7a5ff",
+                        "primary": "#00041a",
+                        "outline": "#76767f",
+                        "surface-container-high": "#dee8ff",
+                        "on-secondary-fixed": "#100563",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "on-secondary-fixed-variant": "#3e3c8f",
+                        "tertiary-container": "#391300",
+                        "outline-variant": "#c6c6cf",
+                        "on-background": "#101c2d",
+                        "surface-tint": "#535d80",
+                        "surface-container": "#e7eeff",
+                        "inverse-primary": "#bbc5ed",
+                        "surface": "#f9f9ff",
+                        "background": "#f9f9ff",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#d8e3fb",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#121d3c",
+                        "on-primary-fixed": "#0f1a39",
+                        "on-tertiary-fixed": "#341100",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#ffdbcb",
+                        "secondary-fixed": "#e2dfff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#101c2d",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#3b4667",
+                        "on-surface-variant": "#45464e",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#f9f9ff",
+                        "on-tertiary-container": "#d76621",
+                        "on-tertiary-fixed-variant": "#793100",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#5655a8",
+                        "surface-container-highest": "#d8e3fb",
+                        "surface-container-low": "#f0f3ff",
+                        "accent-orange": "#F67D38",
+                        "soft-lavender": "#F5F6FF"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-md": "6rem",
+                        "section-sm": "4rem",
+                        "layout-max-width": "1280px",
+                        "element-sm": "1rem",
+                        "content-max-width": "760px",
+                        "element-md": "2rem",
+                        "section-lg": "8rem",
+                        "element-lg": "3rem",
+                        "section-xl": "10rem",
+                        "gutter": "2rem",
+                        "stack-lg": "4rem"
+                    },
+                    "fontFamily": {
+                        "label": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "heading-xl": ["Plus Jakarta Sans"],
+                        "heading-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label": ["14px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "display-lg": ["56px", { "lineHeight": "1.1", "letterSpacing": "-0.035em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["19px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-xl": ["72px", { "lineHeight": "1.05", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "heading-xl": ["44px", { "lineHeight": "1.15", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+                        "heading-lg": ["36px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .mega-menu { display: none; }
+        .group:hover .mega-menu { display: block; }
+
+        /* Orbital Animations */
+        @keyframes orbitCW {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes orbitCCW {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
+        }
+        @keyframes flowDashCW {
+            to { stroke-dashoffset: -100; }
+        }
+        @keyframes flowDashCCW {
+            to { stroke-dashoffset: 100; }
+        }
+
+        .animate-orbit-outer {
+            animation: orbitCW 38s linear infinite;
+        }
+        .animate-orbit-inner {
+            animation: orbitCCW 28s linear infinite;
+        }
+        .counter-rotate-outer {
+            animation: orbitCCW 38s linear infinite;
+        }
+        .counter-rotate-inner {
+            animation: orbitCW 28s linear infinite;
+        }
+
+        .orbit-container:hover .animate-orbit-outer,
+        .orbit-container:hover .animate-orbit-inner,
+        .orbit-container:hover .counter-rotate-outer,
+        .orbit-container:hover .counter-rotate-inner {
+            animation-play-state: paused;
+        }
+
+        .orbit-dash-outer {
+            animation: flowDashCW 35s linear infinite;
+        }
+        .orbit-dash-inner {
+            animation: flowDashCCW 25s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased overflow-x-hidden">
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-gutter py-4 max-w-layout-max-width mx-auto bg-surface/90 backdrop-blur-md transition-all duration-300">
+<div class="flex items-center gap-element-lg">
+<a class="flex-shrink-0" href="#">
+<img alt="MoDojo Logo" class="h-8 w-auto object-contain" data-alt="MoDojo wide logo featuring green geometric mark and dark text" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3lcddwmF9yqpM9WpwwFu-RrLVcsyPsRf3WZ11v-X-UT-NMuPxqkvUHvpOhX1VicSDYW2nTwr9rsAFP7BCoSPu6WzPu_ItKDQHvNPdQiy6qjOZbZdwYhP3uNQfaEV5wx2V_Cx2_lSO4JaZ6h-7qtw3Td0DBPBs5S-biJUBAFi4J61UvJrtWedlH31nKSeO52NRsUihv4rGX21bZMx2i2d6bwRAJmBlc98l3Y7qwajT70cgZ0CKOih4Y9ObOL__72m7RTc">
+</a>
+<div class="hidden md:flex items-center gap-element-md">
+<a class="font-body-md text-body-md text-text-secondary dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">About Us</a>
+<div class="relative group h-full flex items-center py-4">
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1 flex items-center gap-1 cursor-pointer" href="#">
+                        Product Features
+                        <span class="material-symbols-outlined text-sm">expand_more</span>
+</a>
+<!-- Mega Menu -->
+<div class="mega-menu absolute top-[60px] left-[-100px] w-[800px] bg-surface rounded-xl shadow-2xl border border-surface-container-high p-8 z-50 hidden group-hover:block">
+<div class="mb-8 pb-4 border-b border-outline-variant/20">
+<h3 class="font-heading-lg text-lg text-primary">Product Features</h3>
+<p class="text-sm text-on-surface-variant">MoDojo brings your daily operations together in one seamless platform.</p>
+</div>
+<div class="grid grid-cols-3 gap-8">
+<div>
+<h4 class="font-label text-xs text-on-surface-variant mb-4 uppercase tracking-wider">Manage Your Customers</h4>
+<ul class="space-y-2">
+<li class=""><a class="text-sm text-on-surface hover:text-accent-orange transition-colors" href="#">Members</a></li>
+<li class=""><a class="text-sm text-on-surface hover:text-accent-orange transition-colors" href="#">Leads</a></li>
+<li class=""><a class="text-sm text-on-surface hover:text-accent-orange transition-colors" href="#">Packages</a></li>
+</ul>
+<h4 class="font-label text-xs text-on-surface-variant mt-6 mb-4 uppercase tracking-wider">Run Your Classes</h4>
+<ul class="space-y-2">
+<li class=""><a class="text-sm text-on-surface hover:text-accent-orange transition-colors" href="#">Classes &amp; Scheduling</a></li>
+<li class=""><a class="text-sm text-on-surface hover:text-accent-orange transition-colors" href="#">Bookings</a></li>
+<li class=""><a class="text-sm text-on-surface hover:text-accent-orange transition-colors" href="#">Attendance</a></li>
+<li class=""><a class="text-sm text-on-surface hover:text-accent-orange transition-colors" href="#">Instructors</a></li>
+<li class=""><a class="text-sm text-on-surface hover:text-accent-orange transition-colors" href="#">Rooms</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label text-xs text-on-surface-variant mb-4 uppercase tracking-wider">Sales &amp; Payments</h4>
+<ul class="space-y-2">
+<li class=""><a class="text-sm text-on-surface hover:text-accent-orange transition-colors" href="#">Invoices</a></li>
+<li class=""><a class="text-sm text-on-surface hover:text-accent-orange transition-colors" href="#">Payments</a></li>
+<li class=""><a class="text-sm text-on-surface hover:text-accent-orange transition-colors" href="#">Sales Reports</a></li>
+</ul>
+<h4 class="font-label text-xs text-on-surface-variant mt-6 mb-4 uppercase tracking-wider">Studio &amp; Staff</h4>
+<ul class="space-y-2">
+<li class=""><a class="text-sm text-on-surface hover:text-accent-orange transition-colors" href="#">Branches &amp; Studios</a></li>
+<li class=""><a class="text-sm text-on-surface hover:text-accent-orange transition-colors" href="#">Employees</a></li>
+<li class=""><a class="text-sm text-on-surface hover:text-accent-orange transition-colors" href="#">Roles &amp; Permissions</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label text-xs text-on-surface-variant mb-4 uppercase tracking-wider">Member Experience</h4>
+<ul class="space-y-2">
+<li class=""><a class="text-sm text-on-surface hover:text-accent-orange transition-colors" href="#">Member Portal</a></li>
+<li class=""><a class="text-sm text-on-surface hover:text-accent-orange transition-colors" href="#">Self-Service</a></li>
+<li class=""><a class="text-sm text-on-surface hover:text-accent-orange transition-colors" href="#">Notifications</a></li>
+</ul>
+<h4 class="font-label text-xs text-on-surface-variant mt-6 mb-4 uppercase tracking-wider">Business Insights</h4>
+<ul class="space-y-2">
+<li class=""><a class="text-sm text-on-surface hover:text-accent-orange transition-colors" href="#">Dashboard</a></li>
+<li class=""><a class="text-sm text-on-surface hover:text-accent-orange transition-colors" href="#">Analytics</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<a class="font-body-md text-body-md text-text-secondary dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Pricing</a>
+<a class="font-body-md text-body-md text-text-secondary dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Contact Us</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<a class="hidden md:block font-label text-label text-primary hover:text-accent-orange transition-colors" href="#">Sign In</a>
+<a class="bg-accent-orange text-white font-label text-label px-6 py-3 rounded-full hover:bg-opacity-90 transition-all shadow-sm hover:shadow-md transform hover:-translate-y-0.5" href="#">Start a Free Trial</a>
+</div>
+</nav>
+<main>
+<!-- HERO SECTION -->
+<section class="relative pt-[120px] min-h-[80vh] flex items-center pb-16">
+<div class="absolute inset-0 z-0">
+<img alt="Gym Reception" class="w-full h-full object-cover" data-alt="A modern, high-end gym reception area with bright natural light, warm wood accents, and members checking in. The mood is welcoming and professional, characteristic of a premium fitness studio." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC27wd70ypm8tlhXUyghyyDqSZHLNTHuu-y_GPZZdeXpohtof5PbUmDnsVBx4yBqSX2hmnIi5CFbqdcRIoZxDl9rm89MKeNvq2xjHaUjqPxPWUK085UVZtGqDBE2ewkqC7FBrRa3KxytChLltf46XTkehC9Fx8JFBPenpPFsQQTdX43hDwTHxKHKuCTuypD2kV9yw12wZcHDKHkqjJNrToZ20SppyMBU0NE2vEng9uqcYTXse1Cgl-tJg">
+<div class="absolute inset-0 bg-primary/40 md:bg-gradient-to-r md:from-primary/80 md:to-primary/20"></div>
+</div>
+<div class="relative z-10 w-full max-w-layout-max-width mx-auto px-gutter">
+<div class="max-w-content-max-width">
+<span class="inline-block px-4 py-2 bg-surface/20 backdrop-blur-sm rounded-full text-white font-label text-label mb-6 border border-white/30">
+                        Product Feature
+                    </span>
+<h1 class="font-display-xl text-display-xl text-white mb-6">Run Your Classes</h1>
+<p class="font-body-lg text-body-lg text-inverse-on-surface mb-10 max-w-2xl">
+                        Take the chaos out of your daily schedule. Manage instructors, rooms, capacities, and bookings from one connected interface that makes running your studio feel effortless.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<a class="bg-accent-orange text-white font-label text-label px-8 py-4 rounded-full hover:bg-opacity-90 transition-all shadow-lg hover:shadow-xl flex items-center gap-2 transform hover:-translate-y-1" href="#">
+                            Start Your Free Trial <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+<a class="bg-transparent border border-white text-white font-label text-label px-8 py-4 rounded-full hover:bg-white/10 transition-all flex items-center gap-2" href="#demo">
+<span class="material-symbols-outlined">play_circle</span> Watch Demo
+                        </a>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 1 — THE CLASS MANAGEMENT PROBLEM -->
+<section class="bg-surface py-16">
+<div class="max-w-layout-max-width mx-auto px-gutter">
+<div class="text-center mb-16 max-w-content-max-width mx-auto">
+<h2 class="font-heading-xl text-heading-xl text-primary mb-6">Your schedule shouldn't&nbsp;<div class="">slow you down.</div></h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"><div class="bg-white p-8 rounded-xl border-2 border-red-200 hover:border-red-400 shadow-sm hover:shadow-lg transition-all relative overflow-hidden group">
+<div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-red-500 to-rose-600"></div>
+<div class="w-16 h-16 bg-red-100 text-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform shadow-inner">
+<span class="material-symbols-outlined text-3xl" data-weight="fill">event_busy</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-red-100 text-red-700 mb-3">
+<span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span> Alert
+</div>
+<h3 class="font-label text-label text-primary text-lg mb-2 font-bold">Too many schedules</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Fragmented calendars and overlapping sessions lead to staff burnout and missed classes.</p>
+</div>
+<div class="bg-white p-8 rounded-xl border-2 border-amber-200 hover:border-amber-400 shadow-sm hover:shadow-lg transition-all relative overflow-hidden group">
+<div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-400 to-amber-500"></div>
+<div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform shadow-inner">
+<span class="material-symbols-outlined text-3xl" data-weight="fill">meeting_room</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-800 mb-3">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span> Warning
+</div>
+<h3 class="font-label text-label text-primary text-lg mb-2 font-bold">Room conflicts</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Double-booked studios, displaced members, and chaotic scrambles for physical space.</p>
+</div>
+<div class="bg-white p-8 rounded-xl border-2 border-red-200 hover:border-red-400 shadow-sm hover:shadow-lg transition-all relative overflow-hidden group">
+<div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-red-500 to-rose-600"></div>
+<div class="w-16 h-16 bg-red-100 text-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform shadow-inner">
+<span class="material-symbols-outlined text-3xl" data-weight="fill">groups</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-red-100 text-red-700 mb-3">
+<span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span> Critical
+</div>
+<h3 class="font-label text-label text-primary text-lg mb-2 font-bold">Capacity headaches</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Overcrowded rooms violating safety limits, or half-empty classes bleeding studio revenue.</p>
+</div>
+<div class="bg-white p-8 rounded-xl border-2 border-amber-200 hover:border-amber-400 shadow-sm hover:shadow-lg transition-all relative overflow-hidden group">
+<div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-400 to-amber-500"></div>
+<div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform shadow-inner"><span class="material-symbols-outlined text-3xl" data-weight="fill">update</span></div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-800 mb-3">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span> Disruption
+</div>
+<h3 class="font-label text-label text-primary text-lg mb-2 font-bold">Last-minute changes</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Instructor callouts and sudden cancellations turning front desk shifts into panic mode.</p>
+</div></div>
+<div class="text-center">
+</div>
+</div>
+</section>
+<!-- SECTION 2 — CLASSES & SCHEDULING -->
+<section class="bg-soft-lavender relative overflow-hidden py-16">
+<div class="max-w-layout-max-width mx-auto px-gutter grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+<div class="order-2 lg:order-1 relative">
+<div class="absolute -inset-4 bg-gradient-to-r from-secondary-fixed/50 to-primary-fixed/50 rounded-xl blur-2xl -z-10"></div>
+<img alt="MoDojo Calendar UI" class="rounded-2xl shadow-2xl border border-surface-container-high w-full" data-alt="A clean, modern SaaS dashboard interface showing a weekly calendar view of fitness classes. The UI features orange accents, clear scheduling blocks with instructor names, room locations, and availability statuses like 'Sold Out' and 'Spaces Available'." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRNnljiwOHNgK7MfpMa4eyqQTeoKr9_kqrkfLXgsnw8NuU7VGJsAqF0zH9OM17zAgRmuc7PKNcwOWdSX0lqtLo3jgdbq2vXwFWXUzle3ZNkJQgZ1JQTPDTUYvNgKixnN_Y3_NK9W0lP-afAuhyCZWbxJkAeGEwbuLt5X55p3vCKeyUORSfbbWSGkbkymwNH5OpZNivn_KIRdYGDleeapYZEOOio8VXdc7GAB1JOCpthfKmxdvqi631-Q">
+<!-- Floating UI Card -->
+<div class="absolute -right-8 -bottom-8 bg-white p-6 rounded-xl shadow-xl border border-surface-container-high hidden md:block w-72 animate-float">
+<h4 class="font-label text-label text-primary mb-4 flex items-center justify-between">
+                            Today's Classes
+                            <span class="material-symbols-outlined text-accent-orange text-sm">bolt</span>
+</h4>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<div class="w-2 h-10 bg-accent-orange rounded-full"></div>
+<div>
+<p class="font-label text-label text-sm">HIIT Power</p>
+<p class="text-xs text-on-surface-variant">09:00 AM • Studio A</p>
+</div>
+<span class="ml-auto text-xs font-bold text-secondary bg-secondary-fixed px-2 py-1 rounded-md">20/20</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-2 h-10 bg-primary-container rounded-full"></div>
+<div>
+<p class="font-label text-label text-sm">Yoga Flow</p>
+<p class="text-xs text-on-surface-variant">10:30 AM • Studio B</p>
+</div>
+<span class="ml-auto text-xs font-bold text-accent-orange bg-tertiary-fixed px-2 py-1 rounded-md">15/18</span>
+</div>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2">
+<span class="text-accent-orange font-label text-label tracking-widest uppercase mb-4 block">Scheduling Engine</span>
+<h2 class="font-heading-xl text-heading-xl text-primary mb-6">Build a schedule that works automatically.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">
+                        Create single classes, recurring sessions, or complex programs in seconds. Our smart scheduling engine prevents conflicts before they happen.
+                    </p>
+<ul class="space-y-4 mb-10">
+<li class="flex items-center gap-3 font-body-md text-body-md text-on-surface">
+<div class="w-6 h-6 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm" data-weight="fill">check</span>
+</div>
+<strong>Instructor availability</strong> is verified instantly
+                        </li>
+<li class="flex items-center gap-3 font-body-md text-body-md text-on-surface">
+<div class="w-6 h-6 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm" data-weight="fill">check</span>
+</div>
+<strong>Room capacity</strong> limits are strictly enforced
+                        </li>
+</ul>
+<a class="inline-flex items-center gap-2 font-label text-label text-primary hover:text-accent-orange transition-colors" href="#">
+                        Explore Classes &amp; Scheduling <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Decorative blur -->
+<div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-white/40 to-transparent pointer-events-none"></div>
+</section>
+<!-- SECTION — BOOKINGS -->
+<section class="bg-surface relative py-16">
+<div class="max-w-layout-max-width mx-auto px-gutter grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div>
+<span class="text-accent-orange font-label text-label tracking-widest uppercase mb-4 block">Bookings</span>
+<h2 class="font-heading-xl text-heading-xl text-primary mb-6">Make booking simple for everyone.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">
+                        Provide a seamless booking experience for your members while keeping control over your class capacities and waitlists.
+                    </p>
+<ul class="space-y-4 mb-10">
+<li class="flex items-center gap-3 font-body-md text-body-md text-on-surface">
+<div class="w-6 h-6 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm" data-weight="fill">check</span>
+</div>
+                            Class capacity
+                        </li>
+<li class="flex items-center gap-3 font-body-md text-body-md text-on-surface">
+<div class="w-6 h-6 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm" data-weight="fill">check</span>
+</div>
+                            Waitlists
+                        </li>
+<li class="flex items-center gap-3 font-body-md text-body-md text-on-surface">
+<div class="w-6 h-6 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm" data-weight="fill">check</span>
+</div>
+                            Booking status
+                        </li>
+<li class="flex items-center gap-3 font-body-md text-body-md text-on-surface">
+<div class="w-6 h-6 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm" data-weight="fill">check</span>
+</div>
+                            Member booking history
+                        </li>
+</ul>
+<p class="font-label text-label text-secondary">Fewer messages. Fewer manual bookings.</p>
+</div>
+<div class="relative">
+<div class="bg-white rounded-2xl shadow-xl border border-surface-container-high overflow-hidden">
+<div class="bg-surface-container-low border-b border-surface-container-high px-4 py-3 flex items-center justify-between">
+<h4 class="font-label text-label text-primary">Manage Bookings</h4>
+<span class="material-symbols-outlined text-on-surface-variant">more_horiz</span>
+</div>
+<div class="p-4">
+<div class="flex items-center justify-between mb-4 pb-4 border-b border-surface-container-high">
+<div>
+<p class="font-label text-label text-primary">Pilates Reformer</p>
+<p class="text-xs text-on-surface-variant">Today • 6:00 PM</p>
+</div>
+<span class="text-xs font-bold text-accent-orange bg-tertiary-fixed px-2 py-1 rounded-md">8 Spots left</span>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-bold text-xs"> JD </div>
+<p class="font-body-md text-body-md text-sm text-on-surface">Jane Doe</p>
+</div>
+<span class="text-xs font-bold text-primary bg-primary-fixed px-2 py-1 rounded-md">Booked</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-bold text-xs"> MS </div>
+<p class="font-body-md text-body-md text-sm text-on-surface">Mark Smith</p>
+</div>
+<span class="text-xs font-bold text-primary bg-primary-fixed px-2 py-1 rounded-md">Booked</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Mobile UI -->
+<div class="absolute -left-12 -bottom-12 bg-white rounded-3xl shadow-2xl border border-surface-container-high w-64 p-6 hidden md:block animate-float" style="animation-delay: 1s;">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h5 class="font-label text-label text-primary text-lg">Pilates Reformer</h5>
+<p class="text-sm text-on-surface-variant">6:00 PM · Studio A</p>
+</div>
+<div class="w-8 h-8 bg-surface-container rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-primary">favorite</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-3 mb-6">
+<p class="text-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">group</span>
+<span class="font-bold text-primary">8 spots available</span>
+</p>
+</div>
+<button class="w-full bg-accent-orange text-white font-label text-label py-3 rounded-full hover:bg-opacity-90 transition-all">
+                                Book Class
+                            </button>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION — ATTENDANCE -->
+<section class="bg-surface-container-low py-16">
+<div class="max-w-layout-max-width mx-auto px-gutter text-center">
+<h2 class="font-heading-xl text-heading-xl text-primary mb-4">Check in without the clipboard.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-16 max-w-2xl mx-auto">
+                        Make attendance fast and simple with QR check-in.
+                    </p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 relative">
+<!-- Connecting line for desktop -->
+<div class="hidden md:block absolute top-1/2 left-[16.66%] right-[16.66%] h-0.5 bg-outline-variant -z-10"></div>
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-md mb-6 border border-surface-container-high relative z-10">
+<span class="font-label text-label text-primary">01</span>
+</div>
+<h4 class="font-label text-label text-lg text-primary mb-2">Scan</h4>
+<p class="text-sm text-on-surface-variant">Members scan the studio QR code.</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center shadow-md mb-6 border border-primary relative z-10">
+<span class="font-label text-label text-white">02</span>
+</div>
+<h4 class="font-label text-label text-lg text-primary mb-2">Check In</h4>
+<p class="text-sm text-on-surface-variant">Confirm details on their own device.</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-md mb-6 border border-surface-container-high relative z-10">
+<span class="font-label text-label text-primary">03</span>
+</div>
+<h4 class="font-label text-label text-lg text-primary mb-2">Done</h4>
+<p class="text-sm text-on-surface-variant">Attendance is updated instantly.</p>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-center items-center gap-12">
+<div class="relative w-64">
+<div class="absolute -inset-4 bg-primary/10 rounded-full blur-2xl -z-10"></div>
+<div class="bg-white rounded-[2.5rem] shadow-2xl border-4 border-surface-container p-6 w-full text-center">
+<div class="w-16 h-16 bg-primary-fixed rounded-full flex items-center justify-center mx-auto mb-6 text-primary">
+<span class="material-symbols-outlined text-3xl" data-weight="fill">check_circle</span>
+</div>
+<h4 class="font-heading-lg text-heading-lg text-primary text-xl mb-2">You're Checked In</h4>
+<p class="text-sm text-on-surface-variant mb-6">Enjoy your workout!</p>
+<div class="w-full h-1 bg-surface-variant rounded-full mb-4"></div>
+<div class="w-2/3 mx-auto h-1 bg-surface-variant rounded-full"></div>
+</div>
+</div>
+<div class="bg-white rounded-2xl shadow-xl border border-surface-container-high p-6 w-full max-w-sm text-left">
+<h4 class="font-label text-label text-primary mb-4 flex items-center justify-between">
+                            Live Attendance
+                            <span class="text-xs bg-error-container text-on-error-container px-2 py-1 rounded-full flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>Live</span>
+</h4>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-bold text-sm"> AJ </div>
+<div>
+<p class="font-label text-label text-sm text-primary">Alex Johnson</p>
+<p class="text-xs text-on-surface-variant">HIIT Power</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-bold text-sm"> KL </div>
+<div>
+<p class="font-label text-label text-sm text-primary">Katie Lee</p>
+<p class="text-xs text-on-surface-variant">HIIT Power</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+<p class="font-label text-label text-secondary mt-12">Less time checking names. More time welcoming members.</p>
+</div>
+</section>
+<!-- SECTION — INSTRUCTORS -->
+<section class="bg-surface py-16">
+<div class="max-w-layout-max-width mx-auto px-gutter grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="order-2 lg:order-1 relative flex justify-center">
+<div class="bg-white rounded-2xl shadow-xl border border-surface-container-high p-6 w-full max-w-sm relative z-10">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-16 h-16 rounded-full bg-primary-container text-white flex items-center justify-center font-heading-lg text-2xl">ST</div>
+<div>
+<h4 class="font-heading-lg text-heading-lg text-primary text-xl">Sarah Tan</h4>
+<p class="text-sm text-on-surface-variant">Pilates · Yoga</p>
+</div>
+<div class="ml-auto">
+<span class="bg-primary-fixed text-primary text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">verified</span> Certified
+                                    </span>
+</div>
+</div>
+<div class="mb-6">
+<h5 class="font-label text-label text-sm text-on-surface-variant uppercase tracking-wider mb-3">Assigned Classes</h5>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container text-on-surface text-xs px-3 py-1.5 rounded-md">Pilates Reformer</span>
+<span class="bg-surface-container text-on-surface text-xs px-3 py-1.5 rounded-md">Pilates Mat</span>
+<span class="bg-surface-container text-on-surface text-xs px-3 py-1.5 rounded-md">Yoga Flow</span>
+</div>
+</div>
+<div class="border-t border-surface-container-high pt-6">
+<h5 class="font-label text-label text-sm text-on-surface-variant uppercase tracking-wider mb-3">Today's Schedule</h5>
+<div class="space-y-3">
+<div class="flex justify-between items-center bg-surface-container-lowest p-3 rounded-lg border border-surface-container-high">
+<div>
+<p class="font-label text-label text-sm">Pilates Reformer</p>
+<p class="text-xs text-on-surface-variant">08:00 AM - 09:00 AM</p>
+</div>
+<span class="text-xs font-bold text-accent-orange">Upcoming</span>
+</div>
+<div class="flex justify-between items-center bg-surface-container-lowest p-3 rounded-lg border border-surface-container-high">
+<div>
+<p class="font-label text-label text-sm">Yoga Flow</p>
+<p class="text-xs text-on-surface-variant">10:30 AM - 11:30 AM</p>
+</div>
+<span class="text-xs font-bold text-on-surface-variant">Scheduled</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative Element -->
+<div class="absolute -right-8 -top-8 w-32 h-32 bg-secondary-fixed/50 rounded-full blur-2xl -z-10"></div>
+</div>
+<div class="order-1 lg:order-2">
+<span class="text-accent-orange font-label text-label tracking-widest uppercase mb-4 block">Instructors</span>
+<h2 class="font-heading-xl text-heading-xl text-primary mb-6">Keep your instructors organized.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">
+                        Manage instructor profiles, availability,&nbsp; specialty, and class assignments in one central location. Empower your team to deliver great experiences.
+                    </p>
+</div>
+</div>
+</section>
+<!-- SECTION — ROOMS -->
+<section class="bg-surface-container-low py-16">
+<div class="max-w-layout-max-width mx-auto px-gutter grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div>
+<span class="text-accent-orange font-label text-label tracking-widest uppercase mb-4 block">Rooms</span>
+<h2 class="font-heading-xl text-heading-xl text-primary mb-6">Know what's happening in every room.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">
+                        Maximize your studio space and prevent double-bookings with clear, visual room management.
+                    </p>
+<p class="font-label text-label text-secondary">Keep your rooms organized and your schedule running smoothly.</p>
+</div>
+<div class="relative">
+<div class="bg-white rounded-2xl shadow-xl border border-surface-container-high p-6">
+<h4 class="font-label text-label text-primary mb-6">Room Status</h4>
+<div class="space-y-4">
+<div class="border border-surface-container-high rounded-xl p-4 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-accent-orange"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<h5 class="font-label text-label text-primary text-lg">Studio A - Room 01</h5>
+<p class="text-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">groups</span> 12 cap
+                                        </p>
+</div>
+<span class="bg-error-container text-on-error-container text-xs font-bold px-2 py-1 rounded-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span> In Use
+                                    </span>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded-full text-white flex items-center justify-center font-bold text-xs">ST</div>
+<div>
+<p class="font-label text-label text-sm text-primary">Pilates Reformer (Sarah Tan)</p>
+<p class="text-xs text-on-surface-variant">08:00 AM - 09:00 AM</p>
+</div>
+</div>
+</div>
+<div class="border border-surface-container-high rounded-xl p-4 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-fixed"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<h5 class="font-label text-label text-primary text-lg">Studio A - Room 02</h5>
+<p class="text-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">groups</span> 20 cap
+                                        </p>
+</div>
+<span class="bg-primary-fixed text-primary text-xs font-bold px-2 py-1 rounded-md">
+                                        Available
+                                    </span>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg border border-dashed border-outline-variant text-center">
+<p class="text-sm text-on-surface-variant">Next class at 10:30 AM</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 7 — CONNECTED CLASS OPERATIONS Diagram -->
+<section class="bg-surface py-20 overflow-hidden">
+<div class="max-w-layout-max-width mx-auto px-gutter">
+<div class="text-center mb-10">
+<h2 class="font-heading-xl text-heading-xl text-primary mb-6">The center of your studio universe.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                        In MoDojo, the class isn't just an event on a calendar. It's the hub that connects your entire business together.
+                    </p>
+</div>
+<!-- Interactive Orbital Ecosystem -->
+<div class="orbit-container relative max-w-4xl mx-auto h-[640px] flex items-center justify-center select-none">
+<!-- SVG Track Lines with continuous stroke dash animation -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" style="overflow: visible;" viewBox="0 0 640 640">
+<defs>
+<radialGradient cx="50%" cy="50%" id="orbitGlow" r="50%">
+<stop offset="0%" stop-color="#121D3C" stop-opacity="0.08"></stop>
+<stop offset="60%" stop-color="#121D3C" stop-opacity="0.03"></stop>
+<stop offset="100%" stop-color="#121D3C" stop-opacity="0"></stop>
+</radialGradient>
+</defs>
+<!-- Center Ambient Glow -->
+<circle cx="320" cy="320" fill="url(#orbitGlow)" r="300"></circle>
+<!-- Outer Track (radius 275px) -->
+<circle class="opacity-35 orbit-dash-outer" cx="320" cy="320" fill="none" r="275" stroke="#76767f" stroke-dasharray="6 8" stroke-width="1.5"></circle>
+<!-- Inner Track (radius 185px) -->
+<circle class="opacity-45 orbit-dash-inner" cx="320" cy="320" fill="none" r="185" stroke="#76767f" stroke-dasharray="5 6" stroke-width="1.5"></circle>
+</svg>
+<!-- Central Hub: Classes -->
+<div class="relative z-30 flex items-center justify-center">
+<div class="w-32 h-32 bg-primary rounded-full flex flex-col items-center justify-center shadow-2xl border-4 border-white shadow-primary/30 transition-transform duration-300 hover:scale-105">
+<span class="font-heading-lg text-white font-bold text-xl tracking-wide">Classes</span>
+<span class="w-1.5 h-1.5 rounded-full bg-accent-orange mt-1"></span>
+</div>
+<!-- Outer subtle pulse halo -->
+<div class="absolute -inset-3 rounded-full border border-primary/20 animate-ping pointer-events-none opacity-40"></div>
+</div>
+<!-- OUTER ORBIT LAYER (Radius ~275px, Orbiting Clockwise) -->
+<div class="absolute w-[550px] h-[550px] rounded-full animate-orbit-outer pointer-events-none z-20">
+<!-- Node 1: Members (Top, 0deg) -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
+<div class="counter-rotate-outer flex flex-col items-center group cursor-pointer transition-transform duration-300 hover:scale-110">
+<div class="w-16 h-16 bg-white rounded-full shadow-lg border border-surface-container-high flex items-center justify-center mb-2 text-secondary group-hover:bg-primary group-hover:text-white group-hover:shadow-xl group-hover:border-primary transition-all duration-300">
+<span class="material-symbols-outlined text-2xl">person</span>
+</div>
+<span class="font-label text-label text-primary bg-white/95 px-3 py-0.5 rounded-full shadow-sm border border-surface-container-high group-hover:text-primary group-hover:border-primary/40 transition-colors">Members</span>
+</div>
+</div>
+<!-- Node 2: Payments (Bottom-Right, 120deg) -->
+<div class="absolute top-[75%] left-[93.3%] -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
+<div class="counter-rotate-outer flex flex-col items-center group cursor-pointer transition-transform duration-300 hover:scale-110">
+<div class="w-16 h-16 bg-white rounded-full shadow-lg border border-surface-container-high flex items-center justify-center mb-2 text-accent-orange group-hover:bg-accent-orange group-hover:text-white group-hover:shadow-xl group-hover:border-accent-orange transition-all duration-300">
+<span class="material-symbols-outlined text-2xl">payments</span>
+</div>
+<span class="font-label text-label text-primary bg-white/95 px-3 py-0.5 rounded-full shadow-sm border border-surface-container-high group-hover:text-primary group-hover:border-accent-orange/40 transition-colors">Payments</span>
+</div>
+</div>
+<!-- Node 3: Bookings (Bottom-Left, 240deg) -->
+<div class="absolute top-[75%] left-[6.7%] -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
+<div class="counter-rotate-outer flex flex-col items-center group cursor-pointer transition-transform duration-300 hover:scale-110">
+<div class="w-16 h-16 bg-white rounded-full shadow-lg border border-surface-container-high flex items-center justify-center mb-2 text-accent-orange group-hover:bg-accent-orange group-hover:text-white group-hover:shadow-xl group-hover:border-accent-orange transition-all duration-300">
+<span class="material-symbols-outlined text-2xl">book_online</span>
+</div>
+<span class="font-label text-label text-primary bg-white/95 px-3 py-0.5 rounded-full shadow-sm border border-surface-container-high group-hover:text-primary group-hover:border-accent-orange/40 transition-colors">Bookings</span>
+</div>
+</div>
+</div>
+<!-- INNER ORBIT LAYER (Radius ~185px, Orbiting Counter-Clockwise) -->
+<div class="absolute w-[370px] h-[370px] rounded-full animate-orbit-inner pointer-events-none z-10">
+<!-- Node 1: Attendance (Left, 270deg offset: rotated for balanced spacing) -->
+<div class="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
+<div class="counter-rotate-inner flex flex-col items-center group cursor-pointer transition-transform duration-300 hover:scale-110">
+<div class="w-14 h-14 bg-white rounded-full shadow-md border border-surface-container-high flex items-center justify-center mb-1.5 text-surface-tint group-hover:bg-primary-container group-hover:text-white group-hover:shadow-lg group-hover:border-primary-container transition-all duration-300">
+<span class="material-symbols-outlined text-xl">how_to_reg</span>
+</div>
+<span class="font-label text-xs text-primary bg-white/95 px-2.5 py-0.5 rounded-full shadow-sm border border-surface-container-high group-hover:border-primary/40 transition-colors">Attendance</span>
+</div>
+</div>
+<!-- Node 2: Rooms (Top-Right, 30deg from vertical: ~top 14%, left 86%) -->
+<div class="absolute top-[14%] left-[86%] -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
+<div class="counter-rotate-inner flex flex-col items-center group cursor-pointer transition-transform duration-300 hover:scale-110">
+<div class="w-14 h-14 bg-white rounded-full shadow-md border border-surface-container-high flex items-center justify-center mb-1.5 text-surface-tint group-hover:bg-primary-container group-hover:text-white group-hover:shadow-lg group-hover:border-primary-container transition-all duration-300">
+<span class="material-symbols-outlined text-xl">meeting_room</span>
+</div>
+<span class="font-label text-xs text-primary bg-white/95 px-2.5 py-0.5 rounded-full shadow-sm border border-surface-container-high group-hover:border-primary/40 transition-colors">Rooms</span>
+</div>
+</div>
+<!-- Node 3: Instructors (Bottom-Right, 150deg: ~top 86%, left 86%) -->
+<div class="absolute top-[86%] left-[86%] -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
+<div class="counter-rotate-inner flex flex-col items-center group cursor-pointer transition-transform duration-300 hover:scale-110">
+<div class="w-14 h-14 bg-white rounded-full shadow-md border border-surface-container-high flex items-center justify-center mb-1.5 text-secondary group-hover:bg-secondary group-hover:text-white group-hover:shadow-lg group-hover:border-secondary transition-all duration-300">
+<span class="material-symbols-outlined text-xl">sports_martial_arts</span>
+</div>
+<span class="font-label text-xs text-primary bg-white/95 px-2.5 py-0.5 rounded-full shadow-sm border border-surface-container-high group-hover:border-secondary/40 transition-colors">Instructors</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FINAL CTA -->
+<section class="bg-white text-center py-20">
+<div class="max-w-3xl mx-auto px-gutter">
+<h2 class="font-display-lg text-display-lg text-primary mb-6 leading-tight">Make every class easier to manage.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10">
+                        Join hundreds of premium studios using MoDojo to streamline their daily operations.
+                    </p>
+<div class="flex flex-col sm:flex-row justify-center gap-4 mb-6">
+<a class="bg-accent-orange text-white font-label text-label px-8 py-4 rounded-full hover:bg-opacity-90 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-flex items-center justify-center gap-2" href="#">
+                            Start Your Free Trial <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+<a class="bg-transparent text-primary border border-surface-container-high font-label text-label px-8 py-4 rounded-full hover:bg-surface-container-low transition-all inline-flex items-center justify-center" href="#">
+                            Book a Demo
+                        </a>
+</div>
+<p class="text-sm text-on-surface-variant">30-day free trial · No credit card required</p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-[#121D3C] text-white pt-16 pb-12 border-t border-white/10">
+<div class="max-w-7xl mx-auto px-6">
+<!-- Top Area: Brand and Link Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
+<!-- Brand Column -->
+<div class="lg:col-span-4 flex flex-col items-start">
+<div class="flex items-center gap-2 mb-4">
+<img alt="MoDojo Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIZOUP4h5j7p8BCwD06_GWIMb-XpE4R3wQ9-UWxqaqeBRcn832FJMydynr280b6TXnOGB2vLIdsKHC3vgGQyIUgtsbEY0nSK7Hms2cOb-UqcOPKwgsueooWfm920Ob04ktJjN9PPfSvlQYjb09s5vDdBXdx_6ruzgcGnYZRSKT2hCZ_EuanC4cvbLmdm73ho6-wholZcpGJ0k7cBzMouKPsi7o1cBLuD0bB9GnWNXTEoMakRJoewAmCbvipN4kjL12wtU">
+<span class="text-2xl font-bold text-white tracking-tight">MoDojo</span>
+</div>
+<p class="text-white font-medium mb-2">
+          Studio management, <span class="text-[#F67D38]">made seamless.</span>
+</p>
+<p class="text-slate-400 text-sm mb-6 max-w-sm leading-relaxed">
+          Everything you need to manage your studio, members, classes, and business — all in one place.
+        </p>
+<div class="flex items-center gap-3">
+<a aria-label="Share" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-base">share</span>
+</a>
+<a aria-label="Email" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-base">mail</span>
+</a>
+</div>
+</div>
+<!-- 4-Column Link Grid -->
+<div class="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-8">
+<!-- Product -->
+<div>
+<h4 class="text-xs font-semibold text-slate-400 tracking-wider uppercase mb-4">PRODUCT</h4>
+<ul class="space-y-3">
+<li class=""><a class="text-sm text-slate-300 hover:text-[#F67D38] transition-colors" href="#">Features</a></li>
+<li class=""><a class="text-sm text-slate-300 hover:text-[#F67D38] transition-colors" href="#">Pricing</a></li>
+<li class=""><a class="text-sm text-slate-300 hover:text-[#F67D38] transition-colors" href="#">Member Portal</a></li>
+<li class=""><a class="text-sm text-slate-300 hover:text-[#F67D38] transition-colors" href="#">Business Insights</a></li>
+</ul>
+</div>
+<!-- Company -->
+<div>
+<h4 class="text-xs font-semibold text-slate-400 tracking-wider uppercase mb-4">COMPANY</h4>
+<ul class="space-y-3">
+<li class=""><a class="text-sm text-slate-300 hover:text-[#F67D38] transition-colors" href="#">About Us</a></li>
+<li class=""><a class="text-sm text-slate-300 hover:text-[#F67D38] transition-colors" href="#">Contact Us</a></li>
+</ul>
+</div>
+<!-- Resources -->
+<div>
+<h4 class="text-xs font-semibold text-slate-400 tracking-wider uppercase mb-4">RESOURCES</h4>
+<ul class="space-y-3">
+<li class=""><a class="text-sm text-slate-300 hover:text-[#F67D38] transition-colors" href="#">Help Center</a></li>
+<li class=""><a class="text-sm text-slate-300 hover:text-[#F67D38] transition-colors" href="#">Documentation</a></li>
+<li class=""><a class="text-sm text-slate-300 hover:text-[#F67D38] transition-colors" href="#">FAQs</a></li>
+</ul>
+</div>
+<!-- Account -->
+<div>
+<h4 class="text-xs font-semibold text-slate-400 tracking-wider uppercase mb-4">ACCOUNT</h4>
+<ul class="space-y-3">
+<li class=""><a class="text-sm text-slate-300 hover:text-[#F67D38] transition-colors" href="#">Sign In</a></li>
+<li class=""><a class="text-sm text-slate-300 hover:text-[#F67D38] transition-colors" href="#">Start Free Trial</a></li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Bottom CTA Banner Card -->
+<div class="bg-white/5 border border-white/10 rounded-2xl p-6 mb-8 flex flex-col md:flex-row items-center justify-between gap-4">
+<div>
+<h5 class="text-lg font-bold text-white mb-1">Ready to simplify your studio?</h5>
+<p class="text-slate-400 text-sm">Start managing your studio with MoDojo today.</p>
+</div>
+<a class="bg-[#F67D38] hover:bg-[#e06b28] text-white px-6 py-2.5 rounded-full font-medium text-sm transition-all whitespace-nowrap shadow-sm" href="#">
+        Start Free Trial
+      </a>
+</div>
+<!-- Bottom Divider & Sub-footer Bar -->
+<div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
+<p class="">© 2026 MoDojo Studio Management. All rights reserved.</p>
+<div class="flex items-center gap-6">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Simple scroll effect for navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-md');
+                nav.classList.replace('bg-surface/90', 'bg-surface/95');
+            } else {
+                nav.classList.remove('shadow-md');
+                nav.classList.replace('bg-surface/95', 'bg-surface/90');
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,702 @@
+<!DOCTYPE html><html lang="en" style="width: 1280px; height: 8096px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MoDojo - Business Insights</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#dbe1ff",
+                      "surface": "#f9f9ff",
+                      "on-secondary-fixed-variant": "#3e3c8f",
+                      "tertiary-fixed-dim": "#ffb692",
+                      "on-tertiary-fixed-variant": "#793100",
+                      "on-background": "#101c2d",
+                      "on-tertiary-container": "#d76621",
+                      "on-error-container": "#93000a",
+                      "error": "#ba1a1a",
+                      "surface-tint": "#535d80",
+                      "primary-container": "#121d3c",
+                      "surface-container-high": "#dee8ff",
+                      "secondary": "#5655a8",
+                      "inverse-on-surface": "#ecf1ff",
+                      "surface-bright": "#f9f9ff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface-variant": "#45464e",
+                      "tertiary": "#100300",
+                      "tertiary-fixed": "#ffdbcb",
+                      "on-secondary-fixed": "#100563",
+                      "surface-variant": "#d8e3fb",
+                      "surface-container-low": "#f0f3ff",
+                      "surface-dim": "#cfdaf3",
+                      "secondary-container": "#a7a5ff",
+                      "surface-container": "#e7eeff",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-container": "#391300",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed-dim": "#c3c0ff",
+                      "surface-container-highest": "#d8e3fb",
+                      "on-secondary-container": "#393689",
+                      "on-error": "#ffffff",
+                      "on-primary-fixed": "#0f1a39",
+                      "inverse-primary": "#bbc5ed",
+                      "on-surface": "#101c2d",
+                      "primary": "#00041a",
+                      "outline": "#76767f",
+                      "on-tertiary-fixed": "#341100",
+                      "on-primary-fixed-variant": "#3b4667",
+                      "background": "#f9f9ff",
+                      "primary-fixed-dim": "#bbc5ed",
+                      "inverse-surface": "#263143",
+                      "outline-variant": "#c6c6cf",
+                      "on-primary-container": "#7b85aa",
+                      "secondary-fixed": "#e2dfff",
+                      "on-secondary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "accent-orange": "#F67D38",
+                      "primary-navy": "#121D3C",
+                      "soft-lavender": "#F5F6FF"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "element-sm": "1rem",
+                      "element-lg": "3rem",
+                      "section-md": "6rem",
+                      "content-max-width": "760px",
+                      "section-lg": "8rem",
+                      "section-xl": "10rem",
+                      "section-sm": "4rem",
+                      "element-md": "2rem",
+                      "layout-max-width": "1280px"
+              },
+              "fontFamily": {
+                      "heading-lg": ["Plus Jakarta Sans"],
+                      "label": ["Plus Jakarta Sans"],
+                      "body-lg": ["Plus Jakarta Sans"],
+                      "display-xl": ["Plus Jakarta Sans"],
+                      "body-md": ["Plus Jakarta Sans"],
+                      "heading-xl": ["Plus Jakarta Sans"],
+                      "display-lg": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "heading-lg": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "label": ["14px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                      "body-lg": ["19px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "display-xl": ["72px", {"lineHeight": "1.05", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "heading-xl": ["44px", {"lineHeight": "1.15", "letterSpacing": "-0.025em", "fontWeight": "700"}],
+                      "display-lg": ["56px", {"lineHeight": "1.1", "letterSpacing": "-0.035em", "fontWeight": "700"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+        .mega-menu-enter {
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .mega-menu-enter-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased overflow-x-hidden">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-surface/90 backdrop-blur-md fixed top-0 w-full z-50 border-b border-surface-container shadow-sm transition-all duration-200 ease-in-out">
+<div class="flex justify-between items-center px-element-lg py-3 max-w-layout-max-width mx-auto">
+<a class="flex items-center" href="#">
+<img alt="MoDojo Logo" class="h-8 md:h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSQNCujSVeImr3LyYq-Oa8oi0sALTmoWIc5yHs0TeM8HY7P7hGUsxtrwQMyxLFtEKqS9HDLA-yr6Qu1II12nAnrS1xR-Q6ICV38ZWS5j3Wn40TrwSS8cLjgLxoa-1lgd2INxptk3St7FF6GJEiFnLl2xfMlqSW2asJiMw8rZ0s4rCU267Y14xBN51lX1f-IPC8P7BXL9RU2-U0LruXdunTTIuZidhZHybyx95_mOiWrbkjzu66Ohaic6sZIWxNEoHeXxE">
+</a>
+<nav class="hidden md:flex gap-8 items-center relative">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label text-label hover:opacity-80" href="#">About Us</a>
+<div class="group relative py-2">
+<button class="flex items-center gap-1 font-label text-label text-accent-orange font-bold hover:opacity-80 transition-opacity focus:outline-none">
+<span class="">Product Features</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<!-- Mega Menu Dropdown -->
+<div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 hidden group-hover:block w-[800px] bg-white rounded-2xl p-6 shadow-2xl border border-surface-container z-50">
+<div class="grid grid-cols-3 gap-6 text-left">
+<div class="space-y-4">
+<div>
+<a class="flex items-center gap-2 font-label text-sm font-bold text-primary-container hover:text-accent-orange transition-colors" href="#">
+<span class="material-symbols-outlined text-accent-orange text-lg">group</span>
+<span class="">Manage Your Customers</span>
+</a>
+<p class="text-xs text-on-surface-variant mt-1">CRM, profiles, attendance &amp; retention tracking.</p>
+</div>
+<div>
+<a class="flex items-center gap-2 font-label text-sm font-bold text-primary-container hover:text-accent-orange transition-colors" href="#">
+<span class="material-symbols-outlined text-accent-orange text-lg">calendar_month</span>
+<span class="">Run Your Classes</span>
+</a>
+<p class="text-xs text-on-surface-variant mt-1">Seamless schedule, waitlists, and booking rules.</p>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<a class="flex items-center gap-2 font-label text-sm font-bold text-primary-container hover:text-accent-orange transition-colors" href="#">
+<span class="material-symbols-outlined text-accent-orange text-lg">payments</span>
+<span class="">Sales &amp; Payments</span>
+</a>
+<p class="text-xs text-on-surface-variant mt-1">Memberships, automated billing, and POS.</p>
+</div>
+<div>
+<a class="flex items-center gap-2 font-label text-sm font-bold text-primary-container hover:text-accent-orange transition-colors" href="#">
+<span class="material-symbols-outlined text-accent-orange text-lg">badge</span>
+<span class="">Studio &amp; Staff</span>
+</a>
+<p class="text-xs text-on-surface-variant mt-1">Instructor payroll, shifts, and multi-location tools.</p>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<a class="flex items-center gap-2 font-label text-sm font-bold text-primary-container hover:text-accent-orange transition-colors" href="#">
+<span class="material-symbols-outlined text-accent-orange text-lg">smartphone</span>
+<span class="">Member Experience</span>
+</a>
+<p class="text-xs text-on-surface-variant mt-1">Self-service member portal &amp; mobile check-in.</p>
+</div>
+<div class="bg-surface-container-low p-3 rounded-xl border border-surface-container">
+<a class="flex items-center gap-2 font-label text-sm font-bold text-accent-orange" href="#">
+<span class="material-symbols-outlined text-accent-orange text-lg">insights</span>
+<span class="">Business Insights</span>
+</a>
+<p class="text-xs text-on-surface-variant mt-1">Real-time metrics, churn analytics, and smart reporting.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label text-label hover:opacity-80" href="#">Pricing</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label text-label hover:opacity-80" href="#">Contact Us</a>
+</nav>
+<div class="flex gap-5 items-center">
+<a class="font-label text-label text-primary-container hover:text-accent-orange transition-colors" href="#">Sign In</a>
+<a class="bg-accent-orange text-white px-5 py-2.5 rounded-full font-label text-label hover:opacity-90 shadow-sm transition-opacity" href="#">Start Free Trial</a>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative min-h-[80vh] flex items-center pt-32 pb-24 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="bg-cover bg-center w-full h-full absolute inset-0" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAw-VfpWNK3ii0LLRDe2uCE2PrsfTRO-SDY3b_GneWji1FA06U7YVwg_X9DGx9tx0pq794rAxZ9mtMBJRaOTeGxFgILmimjLZO3ojTmscblFYbpKapzPYhvjY9cXU40nXsUogI2pWL1Ghs0IV72jg74eUF4bUzyc_zxIiXAamvh-mFBFJtQ6aVSK7Zxrg5sRUVUvflwCjE_WngZLRuOmdQRj3EtGe4ea3V9fL6yVJC2wx_eTsr3shcyiA')"></div>
+<div class="absolute inset-0 bg-primary-navy/70 mix-blend-multiply"></div>
+</div>
+<div class="relative z-10 max-w-layout-max-width mx-auto px-element-lg w-full">
+<div class="max-w-content-max-width">
+<span class="font-label text-primary-fixed tracking-widest uppercase mb-4 block">BUSINESS INSIGHTS</span>
+<h1 class="font-display-xl text-display-xl text-white mb-6 leading-tight">See what's happening in your business.</h1>
+<p class="font-body-lg text-body-lg text-primary-fixed-dim mb-10">MoDojo turns your everyday business activity into information you can actually use.</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-accent-orange text-white px-8 py-4 rounded-full font-label text-label hover:opacity-90 transition-opacity shadow-lg shadow-accent-orange/20">Start Your Free Trial</button>
+<button class="border border-primary-fixed text-primary-fixed px-8 py-4 rounded-full font-label text-label hover:bg-primary-fixed/10 transition-colors">Explore the Dashboard</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 1 — DASHBOARD -->
+<section class="py-section-lg bg-surface relative">
+<div class="max-w-layout-max-width mx-auto px-element-lg text-center mb-16">
+<h2 class="font-display-lg text-display-lg text-primary-container mb-4">Your business at a glance.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-content-max-width mx-auto">Get a bird's-eye view of your entire operation with a customizable dashboard that puts your most important metrics front and center.</p>
+</div>
+<div class="max-w-[1400px] mx-auto px-4 relative"><div class="max-w-4xl mx-auto px-4 relative">
+<!-- Laptop Bezel / Top Lid -->
+<div class="bg-primary-navy p-3 sm:p-4 rounded-t-2xl shadow-2xl border-t border-x border-white/20 relative">
+<!-- Web Camera Notch / Dot -->
+<div class="w-2.5 h-2.5 rounded-full bg-slate-900 border border-white/20 mx-auto mb-2 flex items-center justify-center">
+<div class="w-1 h-1 rounded-full bg-blue-500/80"></div>
+</div>
+<!-- Laptop Screen Display -->
+<div class="bg-white rounded-lg overflow-hidden border border-surface-container shadow-inner p-5 sm:p-6 text-on-surface">
+<!-- Mockup Header -->
+<div class="flex justify-between items-center mb-6 pb-3 border-b border-surface-container">
+<div class="font-heading-lg text-xl text-primary-container font-bold">Dashboard</div>
+<div class="flex gap-2.5">
+<button class="px-3 py-1.5 bg-surface-container-low rounded-lg text-primary-container font-label text-xs flex items-center gap-1.5 hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-xs">calendar_month</span> This Month</button>
+<button class="px-3 py-1.5 bg-primary-container text-white rounded-lg font-label text-xs flex items-center gap-1.5 hover:opacity-90 transition-opacity"><span class="material-symbols-outlined text-xs">download</span> Export</button>
+</div>
+</div>
+<!-- Metric Cards -->
+<div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6 relative">
+<div class="absolute -top-10 -left-2 bg-accent-orange text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-md z-20">Key Metrics</div>
+<div class="bg-surface-container-lowest border border-surface-container p-3.5 rounded-xl shadow-sm">
+<div class="text-xs text-on-surface-variant mb-1">Total Members</div>
+<div class="font-heading-lg text-2xl text-primary-container">1,248</div>
+</div>
+<div class="bg-surface-container-lowest border border-surface-container p-3.5 rounded-xl shadow-sm">
+<div class="text-xs text-on-surface-variant mb-1">Active Members</div>
+<div class="font-heading-lg text-2xl text-primary-container">1,102</div>
+</div>
+<div class="bg-surface-container-lowest border border-surface-container p-3.5 rounded-xl shadow-sm relative">
+<div class="absolute -top-3.5 -right-2 bg-primary-container text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-md z-20">Revenue performance</div>
+<div class="text-xs text-on-surface-variant mb-1">Monthly Revenue</div>
+<div class="font-heading-lg text-2xl text-green-600">Rp 48.5M</div>
+</div>
+<div class="bg-surface-container-lowest border border-surface-container p-3.5 rounded-xl shadow-sm">
+<div class="text-xs text-on-surface-variant mb-1">Unpaid Invoices</div>
+<div class="font-heading-lg text-2xl text-error">24</div>
+</div>
+<div class="bg-surface-container-lowest border border-surface-container p-3.5 rounded-xl shadow-sm">
+<div class="text-xs text-on-surface-variant mb-1">Lead Conversion</div>
+<div class="font-heading-lg text-2xl text-primary-container">68%</div>
+</div>
+</div>
+<!-- Charts Area -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Revenue Trend -->
+<div class="md:col-span-2 bg-surface-container-lowest border border-surface-container p-4 rounded-xl shadow-sm relative">
+<div class="absolute top-1/2 -left-3 bg-white border border-surface-container text-primary-container text-[10px] font-bold px-2 py-1 rounded-md shadow-md z-20 whitespace-nowrap">Revenue trends</div>
+<h3 class="font-label text-xs font-bold text-primary-container mb-4">Revenue Overview</h3>
+<div class="h-44 bg-surface-container-low rounded-lg flex items-end px-3 pt-3 gap-2 opacity-70">
+<div class="w-full bg-accent-orange/40 rounded-t-sm" style="height: 40%"></div>
+<div class="w-full bg-accent-orange/50 rounded-t-sm" style="height: 50%"></div>
+<div class="w-full bg-accent-orange/40 rounded-t-sm" style="height: 45%"></div>
+<div class="w-full bg-accent-orange/60 rounded-t-sm" style="height: 65%"></div>
+<div class="w-full bg-accent-orange/80 rounded-t-sm" style="height: 85%"></div>
+<div class="w-full bg-accent-orange rounded-t-sm" style="height: 95%"></div>
+</div>
+</div>
+<!-- Member Growth -->
+<div class="bg-surface-container-lowest border border-surface-container p-4 rounded-xl shadow-sm relative">
+<div class="absolute -right-3 top-1/3 bg-white border border-surface-container text-primary-container text-[10px] font-bold px-2 py-1 rounded-md shadow-md z-20 whitespace-nowrap">Member growth</div>
+<h3 class="font-label text-xs font-bold text-primary-container mb-3">Member Growth</h3>
+<div class="flex items-center justify-center h-28">
+<div class="w-24 h-24 rounded-full border-[12px] border-primary-container border-t-accent-orange rotate-45"></div>
+</div>
+<div class="mt-2 space-y-1.5">
+<div class="flex justify-between text-xs"><span class="text-on-surface-variant flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-primary-container"></div> New</span> <span class="font-semibold">24%</span></div>
+<div class="flex justify-between text-xs"><span class="text-on-surface-variant flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-accent-orange"></div> Retained</span> <span class="font-semibold">76%</span></div>
+</div>
+</div>
+<!-- Booking Activity -->
+<div class="md:col-span-3 bg-surface-container-lowest border border-surface-container p-4 rounded-xl shadow-sm relative">
+<div class="absolute -top-3 right-1/4 bg-primary-container text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-md z-20">Booking activity</div>
+<h3 class="font-label text-xs font-bold text-primary-container mb-3">Recent Booking Activity</h3>
+<div class="space-y-2.5">
+<div class="flex justify-between items-center py-1.5 border-b border-surface-container-low text-xs">
+<div class="flex items-center gap-2.5"><span class="material-symbols-outlined text-green-500 text-sm">check_circle</span> <span class="font-body-md text-xs">Sarah J. booked Hatha Yoga</span></div>
+<span class="text-[11px] text-on-surface-variant">2 mins ago</span>
+</div>
+<div class="flex justify-between items-center py-1.5 border-b border-surface-container-low text-xs">
+<div class="flex items-center gap-2.5"><span class="material-symbols-outlined text-green-500 text-sm">check_circle</span> <span class="font-body-md text-xs">Mike T. booked HIIT Core</span></div>
+<span class="text-[11px] text-on-surface-variant">15 mins ago</span>
+</div>
+<div class="flex justify-between items-center py-1 text-xs">
+<div class="flex items-center gap-2.5"><span class="material-symbols-outlined text-error text-sm">cancel</span> <span class="font-body-md text-xs">Emma W. cancelled Pilates Reformer</span></div>
+<span class="text-[11px] text-on-surface-variant">1 hr ago</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Laptop Base Chassis -->
+<div class="relative mx-auto -mt-0.5 w-[105%] -left-[2.5%] h-3.5 sm:h-4 bg-gradient-to-b from-slate-300 via-slate-200 to-slate-400 rounded-b-xl shadow-lg flex justify-center border-t border-slate-300/80">
+<!-- Center Opening Notch -->
+<div class="w-20 h-1.5 bg-slate-400/80 rounded-b-md shadow-inner"></div>
+</div>
+<!-- Soft Under-Chassis Drop Shadow -->
+<div class="w-[92%] mx-auto h-3 bg-black/20 blur-md rounded-full mt-1"></div>
+</div></div>
+</section>
+<!-- SECTION 2 — KNOW YOUR NUMBERS -->
+<section class="py-section-lg bg-surface-container-low">
+<div class="max-w-layout-max-width mx-auto px-element-lg">
+<h2 class="font-heading-lg text-heading-lg text-primary-container mb-12 text-center">Know your numbers</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="bg-surface rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow border border-surface-container">
+<div class="bg-primary-container/10 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary-container">group_add</span>
+</div>
+<h3 class="font-label text-xl text-primary-container mb-3 font-bold">Member Growth</h3>
+<p class="font-body-md text-on-surface-variant">Track new signups, retention rates, and churn to understand your community's health.</p>
+</div>
+<div class="bg-surface rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow border border-surface-container">
+<div class="bg-accent-orange/10 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-accent-orange">attach_money</span>
+</div>
+<h3 class="font-label text-xl text-primary-container mb-3 font-bold">Revenue</h3>
+<p class="font-body-md text-on-surface-variant">Monitor daily income, projected earnings, and outstanding payments in real-time.</p>
+</div>
+<div class="bg-surface rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow border border-surface-container">
+<div class="bg-green-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-green-600">how_to_reg</span>
+</div>
+<h3 class="font-label text-xl text-primary-container mb-3 font-bold">Attendance</h3>
+<p class="font-body-md text-on-surface-variant">See which classes are full, who's showing up, and spot trends in peak hours.</p>
+</div>
+<div class="bg-surface rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow border border-surface-container">
+<div class="bg-blue-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-blue-600">calendar_month</span>
+</div>
+<h3 class="font-label text-xl text-primary-container mb-3 font-bold">Bookings</h3>
+<p class="font-body-md text-on-surface-variant">Analyze booking velocity and popular time slots to optimize your schedule.</p>
+</div>
+<div class="bg-surface rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow border border-surface-container">
+<div class="bg-purple-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-purple-600">trending_up</span>
+</div>
+<h3 class="font-label text-xl text-primary-container mb-3 font-bold">Lead Conversion</h3>
+<p class="font-body-md text-on-surface-variant">Measure how effectively trials and drop-ins are converting into long-term memberships.</p>
+</div>
+<div class="bg-surface rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow border border-surface-container">
+<div class="bg-pink-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-pink-600">inventory_2</span>
+</div>
+<h3 class="font-label text-xl text-primary-container mb-3 font-bold">Packages</h3>
+<p class="font-body-md text-on-surface-variant">Understand which membership tiers and class packs are driving the most value.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3 — SALES PERFORMANCE -->
+<section class="py-section-lg bg-surface">
+<div class="max-w-layout-max-width mx-auto px-element-lg">
+<div class="text-center mb-16">
+<h2 class="font-heading-lg text-heading-lg text-primary-container mb-4">Know where your revenue comes from</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-content-max-width mx-auto">Drill down into your financial data to see exactly which packages and services are driving your growth.</p>
+</div>
+<div class="bg-white rounded-2xl shadow-lg border border-surface-container p-8" style="background-color: #e8eef8; border: none; border-radius: 28px; box-shadow: 14px 14px 28px #cad4e6, -14px -14px 28px #ffffff;">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Large Chart Area -->
+<div class="lg:col-span-2">
+<h3 class="font-label text-lg font-bold text-primary-container mb-6">Revenue Breakdown</h3>
+<div class="h-80 bg-surface-container-low rounded-xl flex flex-col justify-end p-6 gap-2" style="background-color: #e8eef8; border-radius: 20px; box-shadow: inset 5px 5px 10px #cad4e6, inset -5px -5px 10px #ffffff;">
+<!-- Abstract layered chart representation -->
+<div class="flex gap-4 items-end h-full w-full">
+<div class="w-full bg-primary-container rounded-t-md relative group"><div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-surface shadow text-xs px-2 py-1 rounded hidden group-hover:block">Jan</div></div>
+<div class="w-full bg-primary-container/90 rounded-t-md" style="height: 110%"></div>
+<div class="w-full bg-primary-container/80 rounded-t-md" style="height: 130%"></div>
+<div class="w-full bg-primary-container/70 rounded-t-md" style="height: 125%"></div>
+<div class="w-full bg-primary-container/80 rounded-t-md" style="height: 140%"></div>
+<div class="w-full bg-primary-container rounded-t-md" style="height: 160%"></div>
+</div>
+</div>
+</div>
+<!-- Breakdown Sidebar -->
+<div class="flex flex-col gap-6">
+<div class="bg-surface-container-low p-6 rounded-xl" style="background-color: #e8eef8; border: none; border-radius: 20px; box-shadow: 6px 6px 14px #cad4e6, -6px -6px 14px #ffffff;">
+<h4 class="font-label text-sm text-on-surface-variant mb-4 uppercase tracking-wider">Top Packages</h4>
+<div class="space-y-4"><div><div class="flex justify-between text-sm mb-1.5"><span class="font-bold text-primary-container">Unlimited Monthly</span> <span class="font-semibold text-primary-container">45%</span></div><div class="w-full rounded-full h-2.5 p-0.5" style="background-color: #e8eef8; box-shadow: inset 2px 2px 4px #cad4e6, inset -2px -2px 4px #ffffff;"><div class="bg-accent-orange h-full rounded-full" style="width: 45%"></div></div></div><div><div class="flex justify-between text-sm mb-1.5"><span class="font-bold text-primary-container">10 Class Pack</span> <span class="font-semibold text-primary-container">30%</span></div><div class="w-full rounded-full h-2.5 p-0.5" style="background-color: #e8eef8; box-shadow: inset 2px 2px 4px #cad4e6, inset -2px -2px 4px #ffffff;"><div class="bg-accent-orange/80 h-full rounded-full" style="width: 30%"></div></div></div><div><div class="flex justify-between text-sm mb-1.5"><span class="font-bold text-primary-container">Drop-in</span> <span class="font-semibold text-primary-container">15%</span></div><div class="w-full rounded-full h-2.5 p-0.5" style="background-color: #e8eef8; box-shadow: inset 2px 2px 4px #cad4e6, inset -2px -2px 4px #ffffff;"><div class="bg-accent-orange/60 h-full rounded-full" style="width: 15%"></div></div></div></div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl flex-1 flex flex-col justify-center" style="background-color: #e8eef8; border: none; border-radius: 20px; box-shadow: 6px 6px 14px #cad4e6, -6px -6px 14px #ffffff;">
+<h4 class="font-label text-sm text-on-surface-variant mb-2 uppercase tracking-wider">Invoice Status</h4>
+<div class="flex items-center gap-4 mt-2">
+<div class="w-16 h-16 rounded-full border-4 border-green-500 border-r-surface-container-high flex items-center justify-center font-bold text-sm text-primary-container" style="background-color: #e8eef8; border: 3px solid #22c55e; box-shadow: 4px 4px 8px #cad4e6, -4px -4px 8px #ffffff;">92%</div>
+<div>
+<div class="font-bold text-primary-container">Paid on time</div>
+<div class="text-xs text-on-surface-variant">Outstanding: Rp 4.2M</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4 — MEMBER & BUSINESS GROWTH -->
+<section class="py-section-lg bg-surface-container-lowest">
+<div class="max-w-layout-max-width mx-auto px-element-lg grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<!-- Visual/Chart Side -->
+<div class="relative">
+<div class="absolute inset-0 bg-primary-container/5 rounded-3xl transform -rotate-3 scale-105"></div>
+<div class="bg-white border border-surface-container p-8 rounded-3xl shadow-lg relative">
+<h3 class="font-label text-xl font-bold text-primary-container mb-6">Member Growth (YTD)</h3>
+<!-- Abstract area chart -->
+<div class="h-64 relative overflow-hidden rounded-xl bg-surface">
+<svg class="absolute bottom-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+<path d="M0,100 L0,80 Q25,60 50,70 T100,30 L100,100 Z" fill="#dbe1ff" opacity="0.5"></path>
+<path d="M0,100 L0,90 Q25,75 50,85 T100,40 L100,100 Z" fill="#121D3C" opacity="0.8"></path>
+</svg>
+</div>
+<!-- Stat overlays -->
+<div class="flex gap-4 mt-6">
+<div class="flex-1 bg-surface-container-low p-4 rounded-xl">
+<div class="text-xs text-on-surface-variant mb-1">New Members</div>
+<div class="font-bold text-xl text-green-600 flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_upward</span> +24%</div>
+</div>
+<div class="flex-1 bg-surface-container-low p-4 rounded-xl">
+<div class="text-xs text-on-surface-variant mb-1">Churn Rate</div>
+<div class="font-bold text-xl text-primary-container flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_downward</span> 2.1%</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Copy Side -->
+<div>
+<h2 class="font-heading-lg text-heading-lg text-primary-container mb-6">Track your community's expansion</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Watch your studio grow in real-time. MoDojo provides deep insights into acquisition channels, retention rates, and member behavior so you can focus on what's working.</p>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="bg-accent-orange/10 p-3 rounded-full text-accent-orange"><span class="material-symbols-outlined">person_add</span></div>
+<div>
+<div class="font-label text-lg font-bold text-primary-container">New Members +24%</div>
+<p class="text-on-surface-variant text-sm mt-1">Consistent month-over-month growth in new acquisitions.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-primary-container/10 p-3 rounded-full text-primary-container"><span class="material-symbols-outlined">sync</span></div>
+<div>
+<div class="font-label text-lg font-bold text-primary-container">Lead Conversion 68%</div>
+<p class="text-on-surface-variant text-sm mt-1">High conversion rate from intro offers to full memberships.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-green-500/10 p-3 rounded-full text-green-600"><span class="material-symbols-outlined">favorite</span></div>
+<div>
+<div class="font-label text-lg font-bold text-primary-container">Active Members 1,102</div>
+<p class="text-on-surface-variant text-sm mt-1">Strong retention keeping your core community engaged and active.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5 — ATTENDANCE & CLASS PERFORMANCE -->
+<section class="py-section-lg bg-surface">
+<div class="max-w-layout-max-width mx-auto px-element-lg text-center mb-16">
+<h2 class="font-heading-lg text-heading-lg text-primary-container mb-4">Know which classes are keeping your members engaged</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-content-max-width mx-auto">Optimize your schedule based on hard data, not guesswork. See exactly which instructors and class types are driving attendance.</p>
+</div>
+<div class="max-w-[1000px] mx-auto bg-white rounded-2xl shadow-md border border-surface-container overflow-hidden">
+<div class="bg-surface-container-low px-8 py-4 border-b border-surface-container flex justify-between items-center">
+<h3 class="font-label font-bold text-primary-container">Class Performance (Last 30 Days)</h3>
+<button class="text-primary-container text-sm font-bold flex items-center gap-1 hover:text-accent-orange transition-colors">View All <span class="material-symbols-outlined text-sm">arrow_forward</span></button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest border-b border-surface-container">
+<th class="px-8 py-4 font-label text-xs text-on-surface-variant uppercase tracking-wider">Class Type</th>
+<th class="px-8 py-4 font-label text-xs text-on-surface-variant uppercase tracking-wider">Avg. Attendance</th>
+<th class="px-8 py-4 font-label text-xs text-on-surface-variant uppercase tracking-wider">Fill Rate</th>
+<th class="px-8 py-4 font-label text-xs text-on-surface-variant uppercase tracking-wider">Trend</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-sm">
+<tr class="border-b border-surface-container-low hover:bg-surface-container-lowest transition-colors">
+<td class="px-8 py-5 font-bold text-primary-container">Pilates Reformer</td>
+<td class="px-8 py-5 text-on-surface-variant">14/15</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-2">
+<div class="w-24 bg-surface-container-high rounded-full h-2"><div class="bg-green-500 h-2 rounded-full" style="width: 92%"></div></div>
+<span class="font-bold text-primary-container">92%</span>
+</div>
+</td>
+<td class="px-8 py-5 text-green-500"><span class="material-symbols-outlined text-sm">trending_up</span></td>
+</tr>
+<tr class="border-b border-surface-container-low hover:bg-surface-container-lowest transition-colors">
+<td class="px-8 py-5 font-bold text-primary-container">Yoga Flow</td>
+<td class="px-8 py-5 text-on-surface-variant">22/25</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-2">
+<div class="w-24 bg-surface-container-high rounded-full h-2"><div class="bg-green-500 h-2 rounded-full" style="width: 88%"></div></div>
+<span class="font-bold text-primary-container">88%</span>
+</div>
+</td>
+<td class="px-8 py-5 text-green-500"><span class="material-symbols-outlined text-sm">trending_up</span></td>
+</tr>
+<tr class="border-b border-surface-container-low hover:bg-surface-container-lowest transition-colors">
+<td class="px-8 py-5 font-bold text-primary-container">Strength &amp; Cond.</td>
+<td class="px-8 py-5 text-on-surface-variant">16/20</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-2">
+<div class="w-24 bg-surface-container-high rounded-full h-2"><div class="bg-accent-orange h-2 rounded-full" style="width: 84%"></div></div>
+<span class="font-bold text-primary-container">84%</span>
+</div>
+</td>
+<td class="px-8 py-5 text-on-surface-variant"><span class="material-symbols-outlined text-sm">trending_flat</span></td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-8 py-5 font-bold text-primary-container">Restorative Yoga</td>
+<td class="px-8 py-5 text-on-surface-variant">12/25</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-2">
+<div class="w-24 bg-surface-container-high rounded-full h-2"><div class="bg-error h-2 rounded-full" style="width: 48%"></div></div>
+<span class="font-bold text-primary-container">48%</span>
+</div>
+</td>
+<td class="px-8 py-5 text-error"><span class="material-symbols-outlined text-sm">trending_down</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- SECTION 6 — FROM DATA TO DECISIONS -->
+<section class="py-section-xl bg-primary-navy text-white relative overflow-hidden">
+<!-- Background accents -->
+<div class="absolute top-0 right-0 w-[500px] h-[500px] bg-accent-orange/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+<div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-primary-fixed/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4"></div>
+<div class="max-w-layout-max-width mx-auto px-element-lg relative z-10">
+<div class="text-center mb-16">
+<h2 class="font-display-lg text-display-lg text-white mb-6">From Data to Decisions</h2>
+<p class="font-body-lg text-body-lg text-inverse-on-surface/80 max-w-content-max-width mx-auto">Don't just collect numbers. Use them to build a stronger, more profitable business with our simple three-step methodology.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm relative">
+<div class="text-6xl font-display-xl font-bold text-white/10 absolute top-4 right-6">01</div>
+<div class="w-14 h-14 bg-accent-orange rounded-xl flex items-center justify-center mb-6 relative z-10">
+<span class="material-symbols-outlined text-white text-2xl">visibility</span>
+</div>
+<h3 class="font-heading-lg text-2xl text-white mb-4 relative z-10">See</h3>
+<p class="font-body-md text-inverse-on-surface/70 relative z-10">Get instant visibility into every aspect of your business operations through intuitive, real-time dashboards.</p>
+</div>
+<div class="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm relative">
+<div class="text-6xl font-display-xl font-bold text-white/10 absolute top-4 right-6">02</div>
+<div class="w-14 h-14 bg-primary-fixed rounded-xl flex items-center justify-center mb-6 relative z-10">
+<span class="material-symbols-outlined text-primary-navy text-2xl">insights</span>
+</div>
+<h3 class="font-heading-lg text-2xl text-white mb-4 relative z-10">Understand</h3>
+<p class="font-body-md text-inverse-on-surface/70 relative z-10">Uncover the 'why' behind the numbers. Identify trends, spot opportunities, and pinpoint areas for improvement.</p>
+</div>
+<div class="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm relative">
+<div class="text-6xl font-display-xl font-bold text-white/10 absolute top-4 right-6">03</div>
+<div class="w-14 h-14 bg-green-500 rounded-xl flex items-center justify-center mb-6 relative z-10">
+<span class="material-symbols-outlined text-white text-2xl">rocket_launch</span>
+</div>
+<h3 class="font-heading-lg text-2xl text-white mb-4 relative z-10">Act</h3>
+<p class="font-body-md text-inverse-on-surface/70 relative z-10">Make informed changes confidently. Adjust schedules, launch targeted marketing, or tweak pricing based on facts.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 7 — ONE CLEAR VIEW OF YOUR BUSINESS -->
+<section class="py-section-xl bg-surface-container-low overflow-hidden">
+<div class="max-w-layout-max-width mx-auto px-element-lg">
+<div class="text-center mb-16">
+<h2 class="font-heading-lg text-heading-lg text-primary-container mb-4">One clear view of your business</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-content-max-width mx-auto">All your MoDojo tools feed into one central intelligence hub, eliminating data silos and giving you the complete picture.</p>
+</div>
+<div class="relative max-w-4xl mx-auto h-[500px] flex items-center justify-center">
+<!-- Central Hub -->
+<div class="w-48 h-48 bg-primary-container rounded-full flex flex-col items-center justify-center z-20 shadow-2xl relative border-8 border-surface-container-low">
+<span class="material-symbols-outlined text-white text-5xl mb-2">dashboard</span>
+<span class="font-label font-bold text-white text-center leading-tight">MoDojo<br>Dashboard</span>
+<!-- Connecting lines -->
+<svg class="absolute inset-0 w-full h-full scale-[2.5] -z-10 pointer-events-none" viewBox="0 0 100 100">
+<line stroke="#c6c6cf" stroke-dasharray="2,2" stroke-width="0.5" x1="50" x2="20" y1="50" y2="20"></line>
+<line stroke="#c6c6cf" stroke-dasharray="2,2" stroke-width="0.5" x1="50" x2="80" y1="50" y2="20"></line>
+<line stroke="#c6c6cf" stroke-dasharray="2,2" stroke-width="0.5" x1="50" x2="20" y1="50" y2="80"></line>
+<line stroke="#c6c6cf" stroke-dasharray="2,2" stroke-width="0.5" x1="50" x2="80" y1="50" y2="80"></line>
+</svg>
+</div>
+<!-- Orbital Nodes -->
+<div class="absolute top-10 left-10 bg-white p-4 rounded-xl shadow-md border border-surface-container flex items-center gap-3 w-48 z-10">
+<div class="bg-surface-container-low p-2 rounded-lg text-primary-container"><span class="material-symbols-outlined">group</span></div>
+<span class="font-label text-sm font-bold text-primary-container">Members</span>
+</div>
+<div class="absolute top-10 right-10 bg-white p-4 rounded-xl shadow-md border border-surface-container flex items-center gap-3 w-48 z-10">
+<div class="bg-surface-container-low p-2 rounded-lg text-accent-orange"><span class="material-symbols-outlined">event_available</span></div>
+<span class="font-label text-sm font-bold text-primary-container">Bookings</span>
+</div>
+<div class="absolute bottom-10 left-10 bg-white p-4 rounded-xl shadow-md border border-surface-container flex items-center gap-3 w-48 z-10">
+<div class="bg-surface-container-low p-2 rounded-lg text-green-500"><span class="material-symbols-outlined">payments</span></div>
+<span class="font-label text-sm font-bold text-primary-container">Payments</span>
+</div>
+<div class="absolute bottom-10 right-10 bg-white p-4 rounded-xl shadow-md border border-surface-container flex items-center gap-3 w-48 z-10">
+<div class="bg-surface-container-low p-2 rounded-lg text-purple-500"><span class="material-symbols-outlined">campaign</span></div>
+<span class="font-label text-sm font-bold text-primary-container">Marketing</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 8 — CTA -->
+<section class="py-section-xl bg-primary-navy">
+<div class="max-w-layout-max-width mx-auto px-element-lg text-center">
+<h2 class="font-display-lg text-display-lg text-white mb-8">Know your business. Run it better.</h2>
+<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+<button class="bg-accent-orange text-white px-8 py-4 rounded-full font-label text-lg hover:opacity-90 transition-opacity w-full sm:w-auto">Start Your 30-Day Free Trial</button>
+<button class="border border-white/30 text-white px-8 py-4 rounded-full font-label text-lg hover:bg-white/10 transition-colors w-full sm:w-auto">Book a Demo</button>
+</div>
+</div>
+</section>
+<!-- Footer (Shared Component) -->
+<footer class="bg-primary-navy text-white w-full pt-16 pb-12">
+<div class="max-w-layout-max-width mx-auto px-element-lg">
+<!-- Pre-footer / In-footer CTA Card -->
+<div class="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 mb-16 flex flex-col md:flex-row items-center justify-between gap-8 backdrop-blur-sm">
+<div class="max-w-xl text-center md:text-left">
+<h3 class="font-display-lg text-2xl md:text-3xl font-bold text-white mb-3">Ready to simplify your studio?</h3>
+<p class="font-body-md text-surface-variant/80 text-sm md:text-base">Start managing your studio with MoDojo today. No credit card required to get started.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto justify-center">
+<a class="bg-accent-orange text-white px-8 py-3.5 rounded-full font-label text-label hover:opacity-90 transition-opacity text-center shadow-lg shadow-accent-orange/20 whitespace-nowrap" href="#">Start Free Trial</a>
+<a class="border border-white/20 text-white px-8 py-3.5 rounded-full font-label text-label hover:bg-white/10 transition-colors text-center whitespace-nowrap" href="#">Book a Demo</a>
+</div>
+</div>
+<!-- Main Footer Columns -->
+<div class="grid grid-cols-1 md:grid-cols-5 gap-12 pb-12 border-b border-white/10">
+<!-- Brand Column -->
+<div class="md:col-span-2 pr-0 md:pr-8">
+<div class="mb-6 flex items-center">
+<img alt="MoDojo" class="h-8 w-auto brightness-0 invert object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ3DKBqOo5RHvaw0zndjV0NaUWg5pvNcf6hv4h65e-l8NXb2609mVx9kDSnXXz7Wr1MgJeTplYT9SbqWbDQDFZUNXHcCGtvkaI-u2Fhpey39cFJPX5JapncWHyoLaFT5oxAH-_zyaEB627XUVPSKSYoOv1Q7VX3C82GzTXEhMT7LSlG4Gk14VmZ-Ao4zY-gk1_O5ohFl-wIfXAQfzxz5ryAuYvqUcm4YoHbwqFsCskoLNxizQiNKDZg9jHCTW8r0oPVTA">
+</div>
+<p class="font-label text-accent-orange text-base font-semibold mb-3">Studio management, made seamless.</p>
+<p class="font-body-md text-surface-variant/70 text-sm mb-6 max-w-sm">Everything you need to manage your studio, members, classes, and business — all in one place.</p>
+<div class="flex gap-4 text-white/80">
+<a class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent-orange transition-colors" href="#"><span class="material-symbols-outlined text-lg">alternate_email</span></a>
+<a class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent-orange transition-colors" href="#"><span class="material-symbols-outlined text-lg">chat</span></a>
+<a class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent-orange transition-colors" href="#"><span class="material-symbols-outlined text-lg">call</span></a>
+</div>
+</div>
+<!-- Nav Columns -->
+<div>
+<h4 class="font-label text-white font-bold text-sm mb-4 uppercase tracking-wider">Product</h4>
+<ul class="space-y-3 font-body-md text-sm text-surface-variant/70">
+<li class=""><a class="hover:text-accent-orange transition-colors" href="#">Features</a></li>
+<li class=""><a class="hover:text-accent-orange transition-colors" href="#">Pricing</a></li>
+<li class=""><a class="hover:text-accent-orange transition-colors" href="#">Member Portal</a></li>
+<li class=""><a class="hover:text-accent-orange transition-colors text-accent-orange font-bold" href="#">Business Insights</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label text-white font-bold text-sm mb-4 uppercase tracking-wider">Company</h4>
+<ul class="space-y-3 font-body-md text-sm text-surface-variant/70">
+<li class=""><a class="hover:text-accent-orange transition-colors" href="#">About Us</a></li>
+<li class=""><a class="hover:text-accent-orange transition-colors" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label text-white font-bold text-sm mb-4 uppercase tracking-wider">Resources</h4>
+<ul class="space-y-3 font-body-md text-sm text-surface-variant/70">
+<li class=""><a class="hover:text-accent-orange transition-colors" href="#">Help Center</a></li>
+<li class=""><a class="hover:text-accent-orange transition-colors" href="#">Documentation</a></li>
+<li class=""><a class="hover:text-accent-orange transition-colors" href="#">FAQs</a></li>
+</ul>
+</div>
+</div>
+<!-- Bottom Bar -->
+<div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-surface-variant/60 font-body-md">
+<div class="">© 2026 MoDojo. All rights reserved.</div>
+<div class="flex gap-6">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MoDojo - Manage Your Customers</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#121d3c",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#100300",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#100563",
+                        "secondary-fixed": "#e2dfff",
+                        "secondary": "#5655a8",
+                        "on-surface-variant": "#45464e",
+                        "on-tertiary-container": "#d76621",
+                        "tertiary-container": "#391300",
+                        "surface-bright": "#f9f9ff",
+                        "on-primary-container": "#7b85aa",
+                        "surface-container-high": "#dee8ff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#ecf1ff",
+                        "primary-fixed-dim": "#bbc5ed",
+                        "inverse-surface": "#263143",
+                        "surface-variant": "#d8e3fb",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#393689",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#d8e3fb",
+                        "on-surface": "#101c2d",
+                        "tertiary-fixed": "#ffdbcb",
+                        "outline": "#76767f",
+                        "surface": "#f9f9ff",
+                        "on-secondary-fixed-variant": "#3e3c8f",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#e7eeff",
+                        "on-primary-fixed": "#0f1a39",
+                        "on-background": "#101c2d",
+                        "on-tertiary-fixed-variant": "#793100",
+                        "primary": "#00041a",
+                        "surface-tint": "#535d80",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f0f3ff",
+                        "secondary-container": "#a7a5ff",
+                        "background": "#f9f9ff",
+                        "on-primary-fixed-variant": "#3b4667",
+                        "inverse-primary": "#bbc5ed",
+                        "on-tertiary-fixed": "#341100",
+                        "primary-fixed": "#dbe1ff",
+                        "surface-dim": "#cfdaf3",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#c3c0ff",
+                        "outline-variant": "#c6c6cf",
+                        "brand-orange": "#F67D38",
+                        "brand-navy": "#121D3C",
+                        "brand-lavender": "#F5F6FF"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-sm": "4rem",
+                        "element-md": "2rem",
+                        "layout-max-width": "1280px",
+                        "content-max-width": "760px",
+                        "element-sm": "1rem",
+                        "section-xl": "10rem",
+                        "section-lg": "8rem",
+                        "section-md": "6rem",
+                        "element-lg": "3rem"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "heading-lg": ["Plus Jakarta Sans"],
+                        "heading-xl": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["19px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label": ["14px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "display-lg": ["56px", { "lineHeight": "1.1", "letterSpacing": "-0.035em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "heading-lg": ["36px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "heading-xl": ["44px", { "lineHeight": "1.15", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+                        "display-xl": ["72px", { "lineHeight": "1.05", "letterSpacing": "-0.04em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f9f9ff; color: #101c2d; overflow-x: hidden; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .nav-transition { transition: all 0.3s ease; }
+        .glass-panel { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.3); }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-orange selection:text-white">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-section-sm py-4 max-w-layout-max-width mx-auto bg-surface/90 backdrop-blur-md transition-all duration-300 border-b border-outline-variant/30">
+<div class="flex items-center gap-element-lg">
+<a class="flex-shrink-0" href="#">
+<img alt="MoDojo Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbeCintCzbOVvSZVY5-PAxYaqjASfIhU2Mnjs3rz9rFSc6RasbwwSJAe6EfUiu8SOtDYYrS4HqrDfVBkEYTqM_60tT3rswhgVHHVrf7z9kjHeHwlibXOpQXbNMZNlITBuv8eemdZSnXlXRZS4DZwvciL2mn3oB7iiooKvc8ldv3mLSP1EGrg4bZMQGoTUZyQTupT3Gl04b6ZgSrpFdFBXz8tbsm8KT6IQjTeSzvz1E8TlDTi4obvXx4IFpdJFjoecmFEU">
+</a>
+<div class="hidden md:flex items-center gap-element-md">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">About Us</a>
+<div class="relative group h-full flex items-center py-4">
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1 flex items-center gap-1 cursor-pointer" href="#">
+                        Product Features
+                        <span class="material-symbols-outlined text-sm">expand_more</span>
+</a>
+<!-- Mega Menu -->
+<div class="mega-menu absolute top-[60px] left-[-100px] w-[800px] bg-surface rounded-xl shadow-2xl border border-surface-container-high p-8 z-50 hidden group-hover:block">
+<div class="mb-8 pb-4 border-b border-outline-variant/20">
+<h3 class="font-heading-lg text-lg text-primary">Product Features</h3>
+<p class="text-sm text-on-surface-variant">MoDojo brings your daily operations together in one seamless platform.</p>
+</div>
+<div class="grid grid-cols-3 gap-8">
+<div>
+<h4 class="font-label text-xs text-on-surface-variant mb-4 uppercase tracking-wider">Manage Your Customers</h4>
+<ul class="space-y-2">
+<li class=""><a href="#" class="text-sm text-on-surface hover:text-brand-orange transition-colors">Members</a></li>
+<li class=""><a href="#" class="text-sm text-on-surface hover:text-brand-orange transition-colors">Leads</a></li>
+<li class=""><a href="#" class="text-sm text-on-surface hover:text-brand-orange transition-colors">Packages</a></li>
+</ul>
+<h4 class="font-label text-xs text-on-surface-variant mt-6 mb-4 uppercase tracking-wider">Run Your Classes</h4>
+<ul class="space-y-2">
+<li class=""><a href="#" class="text-sm text-on-surface hover:text-brand-orange transition-colors">Classes &amp; Scheduling</a></li>
+<li class=""><a href="#" class="text-sm text-on-surface hover:text-brand-orange transition-colors">Bookings</a></li>
+<li class=""><a href="#" class="text-sm text-on-surface hover:text-brand-orange transition-colors">Attendance</a></li>
+<li class=""><a href="#" class="text-sm text-on-surface hover:text-brand-orange transition-colors">Instructors</a></li>
+<li class=""><a href="#" class="text-sm text-on-surface hover:text-brand-orange transition-colors">Rooms</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label text-xs text-on-surface-variant mb-4 uppercase tracking-wider">Sales &amp; Payments</h4>
+<ul class="space-y-2">
+<li class=""><a href="#" class="text-sm text-on-surface hover:text-brand-orange transition-colors">Invoices</a></li>
+<li class=""><a href="#" class="text-sm text-on-surface hover:text-brand-orange transition-colors">Payments</a></li>
+<li class=""><a href="#" class="text-sm text-on-surface hover:text-brand-orange transition-colors">Sales Reports</a></li>
+</ul>
+<h4 class="font-label text-xs text-on-surface-variant mt-6 mb-4 uppercase tracking-wider">Studio &amp; Staff</h4>
+<ul class="space-y-2">
+<li class=""><a href="#" class="text-sm text-on-surface hover:text-brand-orange transition-colors">Branches &amp; Studios</a></li>
+<li class=""><a href="#" class="text-sm text-on-surface hover:text-brand-orange transition-colors">Employees</a></li>
+<li class=""><a href="#" class="text-sm text-on-surface hover:text-brand-orange transition-colors">Roles &amp; Permissions</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label text-xs text-on-surface-variant mb-4 uppercase tracking-wider">Member Experience</h4>
+<ul class="space-y-2">
+<li class=""><a href="#" class="text-sm text-on-surface hover:text-brand-orange transition-colors">Member Portal</a></li>
+<li class=""><a href="#" class="text-sm text-on-surface hover:text-brand-orange transition-colors">Self-Service</a></li>
+<li class=""><a href="#" class="text-sm text-on-surface hover:text-brand-orange transition-colors">Notifications</a></li>
+</ul>
+<h4 class="font-label text-xs text-on-surface-variant mt-6 mb-4 uppercase tracking-wider">Business Insights</h4>
+<ul class="space-y-2">
+<li class=""><a href="#" class="text-sm text-on-surface hover:text-brand-orange transition-colors">Dashboard</a></li>
+<li class=""><a href="#" class="text-sm text-on-surface hover:text-brand-orange transition-colors">Analytics</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Blog</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Us</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<a class="hidden md:block font-label text-label text-primary hover:text-brand-orange transition-colors" href="#">Sign In</a>
+<a class="bg-brand-orange text-white font-label text-label px-6 py-3 rounded-full hover:bg-orange-600 transition-all shadow-sm hover:shadow-md transform hover:-translate-y-0.5" href="#">Start Free Trial</a>
+</div>
+</nav>
+<!-- SECTION 1: HERO -->
+<section class="relative pt-32 min-h-[90vh] flex items-center overflow-hidden pb-16">
+<div class="absolute inset-0 z-0">
+
+<div class="absolute inset-0 bg-brand-navy/80 mix-blend-multiply"></div>
+</div>
+
+</section>
+<!-- SECTION 2: THE PROBLEM -->
+
+<!-- SECTION 3: MEMBERS -->
+
+<!-- SECTION 4: LEADS -->
+
+<!-- SECTION 5: PACKAGES -->
+
+<!-- SECTION 6: CONNECTED JOURNEY (Minimal) -->
+
+<!-- FINAL CTA -->
+
+<!-- Footer -->
+
+<script>
+        // Simple nav background transition on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-sm');
+                nav.classList.replace('bg-surface/80', 'bg-white/95');
+            } else {
+                nav.classList.remove('shadow-sm');
+                nav.classList.replace('bg-white/95', 'bg-surface/80');
+            }
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>
